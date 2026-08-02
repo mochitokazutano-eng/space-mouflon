@@ -51,7 +51,9 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 			recordBookEvent({ bookEvent });
 		}
 
-		stateGame.gameType = bookEvent.gameType;
+		// book data uses the math-engine's 'basegame'/'freegame' convention; the frontend's
+		// GameType uses 'basegame'/'freeSpins' (see Background.svelte, FreeSpinCounter, etc.)
+		stateGame.gameType = (bookEvent.gameType as string) === 'freegame' ? 'freeSpins' : 'basegame';
 		await stateGameDerived.enhancedBoard.spin({ revealEvent: bookEvent });
 		eventEmitter.broadcast({ type: 'soundScatterCounterClear' });
 	},
