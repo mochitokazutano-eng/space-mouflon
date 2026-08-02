@@ -1,14 +1,27 @@
 <script lang="ts">
-	import { Rectangle, SpineProvider, SpineTrack } from 'pixi-svelte';
+	import { Rectangle, Sprite } from 'pixi-svelte';
 	import { FadeContainer } from 'components-pixi';
 	import { SECOND } from 'constants-shared/time';
 
 	import { getContext } from '../game/context';
+	import { BACKGROUND_RATIO, PORTRAIT_BACKGROUND_RATIO } from '../game/constants';
 
 	const context = getContext();
-	const backgroundProps = $derived(
-		context.stateLayoutDerived.normalBackgroundLayout({ scale: 0.5 }),
+
+	// TODO(Step 7): this only picks portrait vs landscape art; the full portrait layout pass is later.
+	const isPortrait = $derived(context.stateLayoutDerived.isStacked());
+	const ratio = $derived(isPortrait ? PORTRAIT_BACKGROUND_RATIO : BACKGROUND_RATIO);
+	const layout = $derived(
+		isPortrait
+			? context.stateLayoutDerived.portraitBackgroundLayout({ scale: 1 })
+			: context.stateLayoutDerived.normalBackgroundLayout({ scale: 1 }),
 	);
+	const backgroundProps = $derived(
+		'height' in layout
+			? { x: layout.x, y: layout.y, height: layout.height, width: layout.height * ratio }
+			: { x: layout.x, y: layout.y, width: layout.width, height: layout.width / ratio },
+	);
+
 	const showBaseBackground = $derived(context.stateGame.gameType === 'basegame');
 	const showFeatureBackground = $derived(context.stateGame.gameType === 'freeSpins');
 </script>
@@ -16,19 +29,13 @@
 <Rectangle {...context.stateLayoutDerived.canvasSizes()} backgroundColor={0x000000} zIndex={-3} />
 
 <FadeContainer show={showBaseBackground} duration={SECOND} zIndex={-2}>
-	<SpineProvider key="foregroundAnimation" {...backgroundProps}>
-		<SpineTrack trackIndex={0} animationName={'idle'} loop />
-	</SpineProvider>
-	<SpineProvider key="foregroundAnimation" {...backgroundProps}>
-		<SpineTrack trackIndex={0} animationName={'dust'} loop />
-	</SpineProvider>
+	<Sprite key={isPortrait ? 'bgBasePortrait' : 'bgBase'} anchor={0.5} {...backgroundProps} />
 </FadeContainer>
 
 <FadeContainer show={showFeatureBackground} duration={SECOND} zIndex={-1}>
-	<SpineProvider key="foregroundFeatureAnimation" {...backgroundProps}>
-		<SpineTrack trackIndex={0} animationName={'idle'} loop />
-	</SpineProvider>
-	<SpineProvider key="foregroundFeatureAnimation" {...backgroundProps}>
-		<SpineTrack trackIndex={0} animationName={'dust'} loop />
-	</SpineProvider>
+	<Sprite
+		key={isPortrait ? 'bgFreespinsPortrait' : 'bgFreespins'}
+		anchor={0.5}
+		{...backgroundProps}
+	/>
 </FadeContainer>

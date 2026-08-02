@@ -6,6 +6,9 @@ export const SYMBOL_SIZE = 100;
 
 export const REEL_PADDING = 0.53;
 
+// meteor's gold badge is ~37% of SYMBOL_SIZE across; sized to fit the widest value ("100×")
+export const METEOR_VALUE_FONT_SIZE = 16;
+
 // initial board (padded top and bottom)
 export const INITIAL_BOARD: RawSymbol[][] = [
 	[
@@ -71,8 +74,8 @@ export const BOARD_SIZES = {
 	height: SYMBOL_SIZE * BOARD_DIMENSIONS.y,
 };
 
-export const BACKGROUND_RATIO = 2039 / 1000;
-export const PORTRAIT_BACKGROUND_RATIO = 1242 / 2208;
+export const BACKGROUND_RATIO = 1920 / 1080;
+export const PORTRAIT_BACKGROUND_RATIO = 1080 / 1920;
 const PORTRAIT_RATIO = 800 / 1422;
 const LANDSCAPE_RATIO = 1600 / 900;
 const DESKTOP_RATIO = 1422 / 800;

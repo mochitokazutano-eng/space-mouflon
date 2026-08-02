@@ -13,6 +13,24 @@ export default {
 		src: new URL('../../assets/sprites/pressToContinueText/MM_pressanywhere.json', import.meta.url).href,
 		preload: true,
 	},
+	bgBase: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/backgrounds/bg_base.png', import.meta.url).href,
+		preload: true,
+	},
+	bgFreespins: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/backgrounds/bg_freespins.png', import.meta.url).href,
+		preload: true,
+	},
+	bgBasePortrait: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/backgrounds/bg_base_portrait.png', import.meta.url).href,
+	},
+	bgFreespinsPortrait: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/backgrounds/bg_freespins_portrait.png', import.meta.url).href,
+	},
 	H1: {
 		type: 'sprite',
 		src: new URL('../../assets/sprites/mouflon/H1.png', import.meta.url).href,

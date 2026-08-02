@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { Sprite } from 'pixi-svelte';
+	import { BitmapText, Sprite } from 'pixi-svelte';
 	import { onMount } from 'svelte';
 
 	import { getSymbolInfo } from '../game/utils';
-	import { SYMBOL_SIZE } from '../game/constants';
+	import { METEOR_VALUE_FONT_SIZE, SYMBOL_SIZE } from '../game/constants';
 	import type { MultiplierSymbol } from '../game/stateGame.svelte';
 
 	type Props = {
@@ -38,3 +38,13 @@
 	width={SYMBOL_SIZE * symbolInfo.sizeRatios.width}
 	height={SYMBOL_SIZE * symbolInfo.sizeRatios.height}
 />
+
+{#if props.multiplierSymbol.rawSymbol.multiplier !== undefined}
+	<BitmapText
+		x={props.multiplierSymbol.symbolX.current}
+		y={props.multiplierSymbol.symbolY.current}
+		anchor={0.5}
+		text={`${props.multiplierSymbol.rawSymbol.multiplier}×`}
+		style={{ fontFamily: 'gold', fontSize: METEOR_VALUE_FONT_SIZE }}
+	/>
+{/if}

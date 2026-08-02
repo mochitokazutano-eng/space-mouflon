@@ -1,7 +1,10 @@
 <script lang="ts">
+	import { BitmapText } from 'pixi-svelte';
+
 	import SymbolSpine from './SymbolSpine.svelte';
 	import SymbolSprite from './SymbolSprite.svelte';
 	import { getSymbolBackgroundInfo, getSymbolInfo } from '../game/utils';
+	import { METEOR_VALUE_FONT_SIZE } from '../game/constants';
 	import type { SymbolState, RawSymbol } from '../game/types';
 	import { getContext } from '../game/context';
 
@@ -18,6 +21,7 @@
 	const context = getContext();
 	const symbolInfo = $derived(getSymbolInfo({ rawSymbol: props.rawSymbol, state: props.state }));
 	const isSprite = $derived(symbolInfo.type === 'sprite');
+	const isMeteor = $derived(['M', 'M_TAKEN'].includes(props.rawSymbol.name));
 </script>
 
 {#if isSprite}
@@ -42,5 +46,15 @@
 				}
 			},
 		}}
+	/>
+{/if}
+
+{#if isMeteor && props.rawSymbol.multiplier !== undefined && props.state !== 'explosion'}
+	<BitmapText
+		x={props.x}
+		y={props.y}
+		anchor={0.5}
+		text={`${props.rawSymbol.multiplier}×`}
+		style={{ fontFamily: 'gold', fontSize: METEOR_VALUE_FONT_SIZE }}
 	/>
 {/if}
