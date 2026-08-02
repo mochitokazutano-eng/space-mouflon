@@ -1,8 +1,10 @@
 <script lang="ts">
-	import { getSymbolBackgroundInfo, getSymbolInfo } from '../game/utils';
+	import { Sprite } from 'pixi-svelte';
+	import { onMount } from 'svelte';
+
+	import { getSymbolInfo } from '../game/utils';
+	import { SYMBOL_SIZE } from '../game/constants';
 	import type { MultiplierSymbol } from '../game/stateGame.svelte';
-	import SymbolSpineMain from './SymbolSpineMain.svelte';
-	import SymbolSpineBackground from './SymbolSpineBackground.svelte';
 
 	type Props = {
 		reelIndex: number;
@@ -18,25 +20,21 @@
 		}),
 	);
 
-	const symbolBackgroundInfo = $derived(
-		getSymbolBackgroundInfo({
-			rawSymbol: props.multiplierSymbol.rawSymbol,
-			state: props.multiplierSymbol.symbolState,
-		}),
-	);
+	onMount(() => {
+		props.multiplierSymbol.oncomplete?.();
+	});
+
+	$effect(() => {
+		symbolInfo;
+		props.multiplierSymbol.oncomplete?.();
+	});
 </script>
 
-<SymbolSpineBackground
-	{symbolBackgroundInfo}
-	x={props.multiplierSymbol.initX}
-	y={props.multiplierSymbol.initY}
-/>
-
-<SymbolSpineMain
-	{symbolInfo}
+<Sprite
 	x={props.multiplierSymbol.symbolX.current}
 	y={props.multiplierSymbol.symbolY.current}
-	listener={{
-		complete: props.multiplierSymbol.oncomplete,
-	}}
+	anchor={0.5}
+	key={symbolInfo.assetKey}
+	width={SYMBOL_SIZE * symbolInfo.sizeRatios.width}
+	height={SYMBOL_SIZE * symbolInfo.sizeRatios.height}
 />

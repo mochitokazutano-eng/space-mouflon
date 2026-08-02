@@ -3,13 +3,7 @@ import { stateBet } from 'state-shared';
 import { createPlayBookUtils } from 'utils-book';
 import { createGetEmptyPaddedBoard } from 'utils-slots';
 
-import {
-	SYMBOL_SIZE,
-	REEL_PADDING,
-	SYMBOL_INFO_MAP,
-	BOARD_DIMENSIONS,
-	MULTIPLIER_BACKGROUND_INFO_MAP,
-} from './constants';
+import { SYMBOL_SIZE, REEL_PADDING, SYMBOL_INFO_MAP, BOARD_DIMENSIONS } from './constants';
 import { eventEmitter } from './eventEmitter';
 import type { Bet, BookEventOfType } from './typesBookEvent';
 import { bookEventHandlerMap } from './bookEventHandlerMap';
@@ -60,7 +54,10 @@ export const getSymbolY = (symbolIndexOfBoard: number) => (symbolIndexOfBoard + 
 
 export const getSymbolKey = ({ rawSymbol }: { rawSymbol: RawSymbol }) => {
 	if (rawSymbol.multiplier !== undefined) {
-		return `${rawSymbol.name}_${rawSymbol.multiplier}` as keyof typeof SYMBOL_INFO_MAP;
+		const compositeKey = `${rawSymbol.name}_${rawSymbol.multiplier}`;
+		if (compositeKey in SYMBOL_INFO_MAP) {
+			return compositeKey as keyof typeof SYMBOL_INFO_MAP;
+		}
 	}
 	return rawSymbol.name as keyof typeof SYMBOL_INFO_MAP;
 };
@@ -76,17 +73,6 @@ export const getSymbolInfo = ({
 	return SYMBOL_INFO_MAP[symbolKey][state];
 };
 
-export const getSymbolBackgroundInfo = ({
-	rawSymbol,
-	state,
-}: {
-	rawSymbol: RawSymbol;
-	state: SymbolState;
-}) => {
-	if (rawSymbol.name === 'M') {
-		const symbolKey = getSymbolKey({ rawSymbol }) as keyof typeof MULTIPLIER_BACKGROUND_INFO_MAP;
-		return MULTIPLIER_BACKGROUND_INFO_MAP[symbolKey][state];
-	}
-
+export const getSymbolBackgroundInfo = (_args: { rawSymbol: RawSymbol; state: SymbolState }) => {
 	return null;
 };
