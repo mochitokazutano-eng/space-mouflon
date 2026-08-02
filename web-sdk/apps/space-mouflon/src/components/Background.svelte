@@ -24,6 +24,16 @@
 
 	const showBaseBackground = $derived(context.stateGame.gameType === 'basegame');
 	const showFeatureBackground = $derived(context.stateGame.gameType === 'freeSpins');
+
+	$effect(() => {
+		console.log(
+			'[BG_DEBUG]',
+			'gameType=' + context.stateGame.gameType,
+			'showBase=' + showBaseBackground,
+			'showFeature=' + showFeatureBackground,
+			'isPortrait=' + isPortrait,
+		);
+	});
 </script>
 
 <Rectangle {...context.stateLayoutDerived.canvasSizes()} backgroundColor={0x000000} zIndex={-3} />
