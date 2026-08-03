@@ -147,14 +147,6 @@ export default {
 			scale: 2,
 		},
 	},
-	globalMultiplier: {
-		type: 'spine',
-		src: {
-			atlas: new URL('../../assets/spines/globalMultiplier/multiframe.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/globalMultiplier/multiframe.json', import.meta.url).href,
-			scale: 2,
-		},
-	},
 	tumble_multiplier: {
 		type: 'spine',
 		src: {
@@ -181,14 +173,6 @@ export default {
 		src: {
 			atlas: new URL('../../assets/spines/clusterWin/clusterpay.atlas', import.meta.url).href,
 			skeleton: new URL('../../assets/spines/clusterWin/clusterpay.json', import.meta.url).href,
-			scale: 2,
-		},
-	},
-	transition: {
-		type: 'spine',
-		src: {
-			atlas: new URL('../../assets/spines/transition/transition.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/transition/transition.json', import.meta.url).href,
 			scale: 2,
 		},
 	},

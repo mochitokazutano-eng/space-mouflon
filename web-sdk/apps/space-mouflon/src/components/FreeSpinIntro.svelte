@@ -14,6 +14,7 @@
 	import { getContext } from '../game/context';
 	import PressToContinue from './PressToContinue.svelte';
 	import FreeSpinAnimation from './FreeSpinAnimation.svelte';
+	import { GOLD_TEXT_TINT } from '../game/constants';
 
 	const context = getContext();
 
@@ -41,6 +42,7 @@
 	<FreeSpinAnimation>
 		{#snippet children({ sizes })}
 			<BitmapText
+				tint={GOLD_TEXT_TINT}
 				anchor={{ x: 0.5, y: 1 }}
 				y={-sizes.height * 0.24}
 				text="YOU WON"
@@ -50,6 +52,7 @@
 			<!-- The fsIntroNumber spine carried the sample's wooden plaque as well as the number,
 			     so the number is drawn directly instead. -->
 			<BitmapText
+				tint={GOLD_TEXT_TINT}
 				anchor={{ x: 0.5, y: 0.5 }}
 				text={freeSpinsFromEvent}
 				style={{
@@ -60,6 +63,7 @@
 			/>
 
 			<BitmapText
+				tint={GOLD_TEXT_TINT}
 				anchor={{ x: 0.5, y: 0 }}
 				y={sizes.height * 0.24}
 				text="FREE SPINS"

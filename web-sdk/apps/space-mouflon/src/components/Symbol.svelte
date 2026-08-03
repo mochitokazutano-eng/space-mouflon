@@ -4,7 +4,7 @@
 	import SymbolSpine from './SymbolSpine.svelte';
 	import SymbolSprite from './SymbolSprite.svelte';
 	import { getSymbolBackgroundInfo, getSymbolInfo } from '../game/utils';
-	import { METEOR_VALUE_FONT_SIZE } from '../game/constants';
+	import { METEOR_VALUE_FONT_SIZE, GOLD_TEXT_TINT } from '../game/constants';
 	import type { SymbolState, RawSymbol } from '../game/types';
 	import { getContext } from '../game/context';
 
@@ -51,6 +51,7 @@
 
 {#if isMeteor && props.rawSymbol.multiplier !== undefined && props.state !== 'explosion'}
 	<BitmapText
+		tint={GOLD_TEXT_TINT}
 		x={props.x}
 		y={props.y}
 		anchor={0.5}

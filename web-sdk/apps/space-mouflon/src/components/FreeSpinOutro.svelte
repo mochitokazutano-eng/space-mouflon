@@ -19,6 +19,7 @@
 	import FreeSpinAnimation from './FreeSpinAnimation.svelte';
 	import PressToContinue from './PressToContinue.svelte';
 	import WinCoins from './WinCoins.svelte';
+	import { GOLD_TEXT_TINT } from '../game/constants';
 
 	const context = getContext();
 
@@ -51,6 +52,7 @@
 				<FreeSpinAnimation>
 					{#snippet children({ sizes })}
 						<BitmapText
+							tint={GOLD_TEXT_TINT}
 							anchor={{ x: 0.5, y: 1 }}
 							y={-sizes.height * 0.24}
 							text="YOU WON"
@@ -60,6 +62,7 @@
 						<!-- The fsOutroNumber spine carried the sample's wooden plaque as well as the
 						     amount, so the amount is drawn directly instead. -->
 						<ResponsiveBitmapText
+							tint={GOLD_TEXT_TINT}
 							anchor={0.5}
 							style={{
 								fontFamily: 'gold',
@@ -70,6 +73,7 @@
 						/>
 
 						<BitmapText
+							tint={GOLD_TEXT_TINT}
 							anchor={{ x: 0.5, y: 0 }}
 							y={sizes.height * 0.24}
 							text="TOTAL WIN"

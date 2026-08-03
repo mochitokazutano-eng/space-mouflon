@@ -10,7 +10,7 @@
 	import { FadeContainer } from 'components-pixi';
 
 	import { getContext } from '../game/context';
-	import { SYMBOL_SIZE } from '../game/constants';
+	import { SYMBOL_SIZE, GOLD_TEXT_TINT } from '../game/constants';
 	import { anchorToPivot, BitmapText, Container, type Sizes } from 'pixi-svelte';
 	import Panel from './Panel.svelte';
 
@@ -69,6 +69,7 @@
 			})}
 		>
 			<BitmapText
+				tint={GOLD_TEXT_TINT}
 				text={'FREE SPIN'}
 				style={{
 					fontFamily: 'gold',
@@ -78,6 +79,7 @@
 				onresize={(sizes) => (titleSizes = sizes)}
 			/>
 			<BitmapText
+				tint={GOLD_TEXT_TINT}
 				text={`${current} OF ${total}`}
 				{...counterPosition}
 				anchor={{ x: 0.5, y: 0 }}

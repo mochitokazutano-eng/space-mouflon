@@ -5,7 +5,7 @@
 	import { ResponsiveBitmapText } from 'components-pixi';
 	import { bookEventAmountToCurrencyString } from 'utils-shared/amount';
 
-	import { SYMBOL_SIZE } from '../game/constants';
+	import { SYMBOL_SIZE, GOLD_TEXT_TINT } from '../game/constants';
 
 	type Props = {
 		width: number;
@@ -47,6 +47,7 @@
 	/>
 	<SpineSlot slotName="slot_win">
 		<ResponsiveBitmapText
+			tint={GOLD_TEXT_TINT}
 			anchor={0.5}
 			style={{
 				fontFamily: 'gold',

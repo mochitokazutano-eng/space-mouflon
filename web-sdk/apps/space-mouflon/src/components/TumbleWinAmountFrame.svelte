@@ -3,7 +3,7 @@
 
 	import { BitmapText, Sprite, type Sizes } from 'pixi-svelte';
 
-	import { SYMBOL_SIZE } from '../game/constants';
+	import { SYMBOL_SIZE, GOLD_TEXT_TINT } from '../game/constants';
 
 	type Props = {
 		children: Snippet<[{ frameSizes: Sizes }]>;
@@ -29,6 +29,7 @@
 <Sprite anchor={0.5} key={PANEL_KEY} {...PANEL_SIZES} />
 
 <BitmapText
+	tint={GOLD_TEXT_TINT}
 	anchor={{ x: 0.5, y: 1 }}
 	y={-PANEL_SIZES.height * 0.5 - TITLE_HEIGHT * 0.2}
 	text="TUMBLE WIN"

@@ -18,7 +18,7 @@
 	import WinCoins from './WinCoins.svelte';
 	import WinAnimation from './WinAnimation.svelte';
 	import PressToContinue from './PressToContinue.svelte';
-	import { SYMBOL_SIZE } from '../game/constants';
+	import { SYMBOL_SIZE, GOLD_TEXT_TINT } from '../game/constants';
 	import { getContext } from '../game/context';
 
 	const context = getContext();
@@ -66,6 +66,7 @@
 						{#if winLevelData?.animation}
 							<WinAnimation animationMap={winLevelData.animation}>
 								<ResponsiveBitmapText
+									tint={GOLD_TEXT_TINT}
 									anchor={0.5}
 									maxWidth={2130}
 									text={bookEventAmountToCurrencyString(countUpAmount)}
@@ -80,6 +81,7 @@
 							</WinAnimation>
 						{:else}
 							<ResponsiveBitmapText
+								tint={GOLD_TEXT_TINT}
 								anchor={0.5}
 								maxWidth={context.stateLayoutDerived.canvasSizes().width /
 									context.stateLayoutDerived.mainLayout().scale}

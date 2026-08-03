@@ -3,7 +3,7 @@
 	import { onMount } from 'svelte';
 
 	import { getSymbolInfo } from '../game/utils';
-	import { METEOR_VALUE_FONT_SIZE, SYMBOL_SIZE } from '../game/constants';
+	import { METEOR_VALUE_FONT_SIZE, SYMBOL_SIZE, GOLD_TEXT_TINT } from '../game/constants';
 	import type { MultiplierSymbol } from '../game/stateGame.svelte';
 
 	type Props = {
@@ -41,6 +41,7 @@
 
 {#if props.multiplierSymbol.rawSymbol.multiplier !== undefined}
 	<BitmapText
+		tint={GOLD_TEXT_TINT}
 		x={props.multiplierSymbol.symbolX.current}
 		y={props.multiplierSymbol.symbolY.current}
 		anchor={0.5}

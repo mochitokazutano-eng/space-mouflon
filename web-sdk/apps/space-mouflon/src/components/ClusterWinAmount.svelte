@@ -20,7 +20,7 @@
 	import { waitForTimeout } from 'utils-shared/wait';
 	import { bookEventAmountToCurrencyString } from 'utils-shared/amount';
 
-	import { SYMBOL_SIZE } from '../game/constants';
+	import { SYMBOL_SIZE, GOLD_TEXT_TINT } from '../game/constants';
 	import { getContext } from '../game/context';
 
 	type Props = { win: Win };
@@ -63,6 +63,7 @@
 	}}
 >
 	<BitmapText
+		tint={GOLD_TEXT_TINT}
 		x={SYMBOL_SIZE * (props.win.reel + 0.5)}
 		y={SYMBOL_SIZE * (props.win.row - 0.5) + y.current}
 		scale={scale.current}

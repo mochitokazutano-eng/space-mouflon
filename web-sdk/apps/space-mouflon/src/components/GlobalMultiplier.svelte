@@ -7,26 +7,19 @@
 
 <script lang="ts">
 	import { Tween } from 'svelte/motion';
+	import { backOut, cubicOut } from 'svelte/easing';
 
-	import {
-		BitmapText,
-		Container,
-		SpineEventEmitterProvider,
-		SpineProvider,
-		SpineSlot,
-		SpineTrack,
-	} from 'pixi-svelte';
+	import { BitmapText, Container } from 'pixi-svelte';
 	import { FadeContainer } from 'components-pixi';
-	import { stateBetDerived } from 'state-shared';
-	import { waitForResolve, waitForTimeout } from 'utils-shared/wait';
+	import { waitForTimeout } from 'utils-shared/wait';
 
 	import BoardContainer from './BoardContainer.svelte';
+	import Panel from './Panel.svelte';
 	import { getContext } from '../game/context';
-	import { SYMBOL_SIZE } from '../game/constants';
-
-	type AnimationName = 'static' | 'win' | 'reset' | 'increment';
+	import { SYMBOL_SIZE, GOLD_TEXT_TINT } from '../game/constants';
 
 	const PANEL_WIDTH = SYMBOL_SIZE * 0.641;
+	const PANEL_SIZES = { width: PANEL_WIDTH * 1.5, height: PANEL_WIDTH * 1.05 };
 	const context = getContext();
 	const scale = $derived(context.stateLayoutDerived.isStacked() ? 1.28 : 1);
 	const desktopPosition = $derived({
@@ -42,32 +35,31 @@
 	);
 
 	let show = $state(false);
-	let animationName = $state<AnimationName>('static');
 	let multiplier = $state(1);
-	let previousMultiplier = new Tween(1);
-	let oncomplete = $state(() => {});
+	// Replaces the sample frame's increment/reset Spine animations. The update sequence used
+	// to await the Spine's `complete`; it now awaits this pop settling, so nothing hangs.
+	const pop = new Tween(1);
 
 	context.eventEmitter.subscribeOnMount({
 		globalMultiplierShow: () => (show = true),
 		globalMultiplierHide: () => (show = false),
 		globalMultiplierUpdate: async (emitterEvent) => {
-			if (emitterEvent.multiplier === 1 && multiplier !== 1) {
-				animationName = 'reset';
+			const isReset = emitterEvent.multiplier === 1 && multiplier !== 1;
+			const isIncrement = emitterEvent.multiplier > multiplier;
+
+			if (isReset) {
 				await waitForTimeout(300);
 				context.eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_multiplier_reset' });
-				previousMultiplier.set(emitterEvent.multiplier);
 			}
 
-			if (emitterEvent.multiplier > multiplier) {
+			if (isIncrement) {
 				context.eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_multiplier_update' });
-				animationName = 'increment';
 			}
 
-			if (animationName !== 'static') {
+			if (isReset || isIncrement) {
 				multiplier = emitterEvent.multiplier;
-				await waitForResolve((resolve) => (oncomplete = resolve));
-				animationName = 'static';
-				previousMultiplier.set(multiplier, { duration: 0 });
+				await pop.set(1.35, { duration: 140, easing: backOut });
+				await pop.set(1, { duration: 220, easing: cubicOut });
 			}
 		},
 	});
@@ -76,40 +68,23 @@
 <FadeContainer {show}>
 	<BoardContainer>
 		<Container {...position} {scale}>
-			<SpineProvider key="globalMultiplier" width={PANEL_WIDTH}>
-				<SpineTrack
-					trackIndex={0}
-					{animationName}
-					timeScale={stateBetDerived.timeScale()}
-					listener={{
-						complete: () => {
-							oncomplete();
-						},
-					}}
-				/>
-				<SpineEventEmitterProvider>
-					<SpineSlot slotName="slot_multi">
-						<BitmapText
-							anchor={0.5}
-							text={`${Math.round(previousMultiplier.current)}×`}
-							style={{
-								fontFamily: 'gold',
-								fontSize: SYMBOL_SIZE * 5.2,
-							}}
-						/>
-					</SpineSlot>
-					<SpineSlot slotName="slot_multi_next">
-						<BitmapText
-							anchor={0.5}
-							text={`${multiplier}×`}
-							style={{
-								fontFamily: 'gold',
-								fontSize: SYMBOL_SIZE * 5.2,
-							}}
-						/>
-					</SpineSlot>
-				</SpineEventEmitterProvider>
-			</SpineProvider>
+			<Panel
+				anchor={0.5}
+				width={PANEL_SIZES.width}
+				height={PANEL_SIZES.height}
+				borderRadius={12}
+				borderWidth={3}
+			/>
+			<BitmapText
+				anchor={0.5}
+				scale={pop.current}
+				tint={GOLD_TEXT_TINT}
+				text={`${multiplier}×`}
+				style={{
+					fontFamily: 'gold',
+					fontSize: PANEL_WIDTH * 0.52,
+				}}
+			/>
 		</Container>
 	</BoardContainer>
 </FadeContainer>

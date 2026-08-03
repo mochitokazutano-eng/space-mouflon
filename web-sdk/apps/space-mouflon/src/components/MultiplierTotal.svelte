@@ -12,7 +12,7 @@
 	import { stateBetDerived } from 'state-shared';
 
 	import { getContext } from '../game/context';
-	import { SYMBOL_SIZE } from '../game/constants';
+	import { SYMBOL_SIZE, GOLD_TEXT_TINT } from '../game/constants';
 	import BoardContainer from './BoardContainer.svelte';
 
 	type Animation = 'explosion' | 'static';
@@ -37,6 +37,7 @@
 
 {#snippet multiplierSnippet()}
 	<BitmapText
+		tint={GOLD_TEXT_TINT}
 		scale={3}
 		anchor={0.5}
 		text={`${totalMultiplier} X`}
