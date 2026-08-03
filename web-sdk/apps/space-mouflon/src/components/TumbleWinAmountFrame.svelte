@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 
-	import { BitmapText, Container, Sprite, type Sizes } from 'pixi-svelte';
+	import { BitmapText, Sprite, type Sizes } from 'pixi-svelte';
 
 	import { SYMBOL_SIZE } from '../game/constants';
 
@@ -10,33 +10,29 @@
 	};
 
 	const props: Props = $props();
-	const TITLE_KEY = 'Frame_TumbleWin.png';
-	const TITLE_RATIO = 532 / 143;
-	const TITLE_HEIGHT = SYMBOL_SIZE * 0.28;
-	const TITLE_SIZES = {
-		width: TITLE_HEIGHT * TITLE_RATIO,
-		height: TITLE_HEIGHT,
-	};
 
-	const PANEL_KEY = 'Frame_Tumble.png';
+	// Our navy plate replaces the sample's wooden panel. The footprint is unchanged — the win
+	// amount and the burst spine are both sized off this width.
+	const PANEL_KEY = 'plateValue';
 	const PANEL_RATIO = 1442 / 374;
 	const PANEL_HEIGHT = SYMBOL_SIZE * 0.8;
 	const PANEL_SIZES = {
 		width: PANEL_HEIGHT * PANEL_RATIO,
 		height: PANEL_HEIGHT,
 	};
+
+	// The sample's wooden title plate is dropped: plate_name.png is the branded "SPACE MOUFLON"
+	// lockup rather than a blank label plate, so the gold label sits straight above the panel.
+	const TITLE_HEIGHT = SYMBOL_SIZE * 0.28;
 </script>
 
 <Sprite anchor={0.5} key={PANEL_KEY} {...PANEL_SIZES} />
 
-<Container y={-TITLE_HEIGHT * 1.2}>
-	<Sprite anchor={0.5} key={TITLE_KEY} {...TITLE_SIZES} />
-	<BitmapText
-		anchor={0.5}
-		y={-TITLE_HEIGHT * 0.025}
-		text="TUMBLE WIN"
-		style={{ fontFamily: 'gold', fontSize: TITLE_HEIGHT * 0.45 }}
-	/>
-</Container>
+<BitmapText
+	anchor={{ x: 0.5, y: 1 }}
+	y={-PANEL_SIZES.height * 0.5 - TITLE_HEIGHT * 0.2}
+	text="TUMBLE WIN"
+	style={{ fontFamily: 'gold', fontSize: TITLE_HEIGHT * 0.5 }}
+/>
 
 {@render props.children({ frameSizes: PANEL_SIZES })}

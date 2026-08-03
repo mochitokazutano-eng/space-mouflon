@@ -49,8 +49,10 @@
 			pressed,
 		})}
 
+		<!-- Gold when idle, so the buy-bonus call to action carries the same gold as the spin
+		     button and the steppers; the dark pill marks the armed "DISABLE" state. -->
 		<UiSprite
-			key="buyBonus"
+			key={active ? 'ui_pill_off' : 'ui_pill_on'}
 			{...center}
 			anchor={0.5}
 			width={sizes.width}
@@ -58,12 +60,6 @@
 			{...disabled
 				? {
 						backgroundColor: 0xaaaaaa,
-					}
-				: {}}
-			{...active
-				? {
-						borderWidth: 10,
-						borderColor: 0xffffff,
 					}
 				: {}}
 		/>
@@ -79,7 +75,8 @@
 				fontFamily: 'proxima-nova',
 				fontWeight: '600',
 				fontSize: UI_BASE_FONT_SIZE * 0.9,
-				fill: 0xffffff,
+				// white on the dark armed pill, dark on the gold idle pill
+				fill: state === 'active' ? 0xffffff : 0x241a4d,
 			}}
 		/>
 	{/snippet}

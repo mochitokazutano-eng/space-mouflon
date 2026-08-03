@@ -3,6 +3,14 @@
 
 	const { Story } = defineMeta({
 		title: 'COMPONENTS/<Game>',
+		argTypes: {
+			skipLoadingScreen: {
+				name: 'skipLoadingScreen',
+				description: 'Skip the loading screen and go straight to the game board.',
+				control: { type: 'boolean' },
+				table: { defaultValue: { summary: 'false' } },
+			},
+		},
 	});
 </script>
 
@@ -36,11 +44,14 @@
 	</StoryGameTemplate>
 {/snippet}
 
-<Story name="component (loadingScreen)">
-	<StoryLocale lang="en">
-		<Game />
-	</StoryLocale>
-</Story>
+<Story
+	name="component (loadingScreen)"
+	args={templateArgs({
+		skipLoadingScreen: false,
+		data: {},
+	})}
+	{template}
+/>
 
 <Story
 	name="preSpin"

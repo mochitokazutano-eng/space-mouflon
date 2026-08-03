@@ -1,4 +1,8 @@
+import { sharedAssetsPixi } from 'constants-shared/assets';
+
 export default {
+	// UI art shared with components-ui-pixi (spin button, pills, plates, icons)
+	...sharedAssetsPixi,
 	loader: {
 		type: 'spine',
 		src: {
@@ -83,10 +87,6 @@ export default {
 			scale: 2,
 		},
 	},
-	reelsFrame: {
-		type: 'sprites',
-		src: new URL('../../assets/sprites/reelsFrame/reels_frame.json', import.meta.url).href,
-	},
 	frameReels: {
 		type: 'sprite',
 		src: new URL('../../assets/sprites/ui/frame_reels.png', import.meta.url).href,
@@ -96,6 +96,10 @@ export default {
 		type: 'sprite',
 		src: new URL('../../assets/sprites/ui/space_mouflon_logo.png', import.meta.url).href,
 		preload: true,
+	},
+	plateValue: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/ui/plate_value.png', import.meta.url).href,
 	},
 	screenLandscape: {
 		type: 'sprite',
@@ -151,30 +155,6 @@ export default {
 			scale: 2,
 		},
 	},
-	fsIntro: {
-		type: 'spine',
-		src: {
-			atlas: new URL('../../assets/spines/fsIntro/fs_screen.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/fsIntro/fs_screen.json', import.meta.url).href,
-			scale: 2,
-		},
-	},
-	fsIntroNumber: {
-		type: 'spine',
-		src: {
-			atlas: new URL('../../assets/spines/fsIntro/fs_screen.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/fsIntro/fs_screen_number.json', import.meta.url).href,
-			scale: 2,
-		},
-	},
-	fsOutroNumber: {
-		type: 'spine',
-		src: {
-			atlas: new URL('../../assets/spines/fsIntro/fs_screen.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/fsIntro/fs_total_number.json', import.meta.url).href,
-			scale: 2,
-		},
-	},
 	tumble_multiplier: {
 		type: 'spine',
 		src: {
@@ -195,14 +175,6 @@ export default {
 		type: 'sprites',
 		src: new URL('../../assets/sprites/progressBar/progressBar.json', import.meta.url).href,
 		preload: true,
-	},
-	freeSpins: {
-		type: 'sprites',
-		src: new URL('../../assets/sprites/freeSpins/freeSpins.json', import.meta.url).href,
-	},
-	winSmall: {
-		type: 'sprites',
-		src: new URL('../../assets/sprites/winSmall/MM_Localisation_winsmall.json', import.meta.url).href,
 	},
 	clusterWin: {
 		type: 'spine',
