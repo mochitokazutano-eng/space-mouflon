@@ -4,10 +4,10 @@
 	import { EnablePixiExtension } from 'components-pixi';
 	import { EnableHotkey } from 'components-shared';
 	import { MainContainer } from 'components-layout';
-	import { App, Text, REM } from 'pixi-svelte';
+	import { App, Sprite } from 'pixi-svelte';
 	import { stateModal } from 'state-shared';
 
-	import { UI, UiGameName } from 'components-ui-pixi';
+	import { UI } from 'components-ui-pixi';
 	import { GameVersion, Modals } from 'components-ui-html';
 
 	import { getContext } from '../game/context';
@@ -34,6 +34,10 @@
 	import I18nTest from './I18nTest.svelte';
 
 	const context = getContext();
+
+	// Space Mouflon logo lockup is 1488x482 (aspect ~3.09); size to fit the top-right slot.
+	const LOGO_WIDTH = 320;
+	const LOGO_HEIGHT = (LOGO_WIDTH * 482) / 1488;
 
 	onMount(() => (context.stateLayout.showLoadingScreen = true));
 
@@ -87,19 +91,14 @@
 
 		<UI>
 			{#snippet gameName()}
-				<UiGameName name="SCATTER GAME" />
+				<!-- Space Mouflon logo (below) already contains the game name -->
 			{/snippet}
 			{#snippet logo()}
-				<Text
+				<Sprite
+					key="gameLogo"
 					anchor={{ x: 1, y: 0 }}
-					text="ADD YOUR LOGO"
-					style={{
-						fontFamily: 'proxima-nova',
-						fontSize: REM * 1.5,
-						fontWeight: '600',
-						lineHeight: REM * 2,
-						fill: 0xffffff,
-					}}
+					width={LOGO_WIDTH}
+					height={LOGO_HEIGHT}
 				/>
 			{/snippet}
 		</UI>

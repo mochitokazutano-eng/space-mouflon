@@ -92,6 +92,21 @@ export default {
 		src: new URL('../../assets/sprites/ui/frame_reels.png', import.meta.url).href,
 		preload: true,
 	},
+	gameLogo: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/ui/space_mouflon_logo.png', import.meta.url).href,
+		preload: true,
+	},
+	screenLandscape: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/ui/screen_landscape.png', import.meta.url).href,
+		preload: true,
+	},
+	screenPortrait: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/ui/screen_portrait.png', import.meta.url).href,
+		preload: true,
+	},
 	payFrame: {
 		type: 'sprite',
 		src: new URL('../../assets/sprites/payFrame/payFrame.png', import.meta.url).href,
