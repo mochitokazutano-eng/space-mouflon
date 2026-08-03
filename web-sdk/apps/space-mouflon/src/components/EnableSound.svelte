@@ -1,18 +1,12 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-	import type { LoadedAudio } from 'pixi-svelte';
-
-	import { getContext } from '../game/context';
-	import { sound, type SoundName } from '../game/sound';
-
-	const context = getContext();
+	import { sound } from '../game/sound.svelte';
 
 	onMount(() => {
-		const loadedAudio = $state.snapshot(
-			context.stateApp.loadedAssets['sound'],
-		) as LoadedAudio<SoundName>;
-		const { destroy } = sound.load(loadedAudio);
+		// Our cues are individual files served from static/, so there is no pixi audio asset to
+		// hand over — the manifest drives the Howl set.
+		const { destroy } = sound.load();
 
 		return () => {
 			// Equivalent to onDestroy(); Leave this comment for searching.

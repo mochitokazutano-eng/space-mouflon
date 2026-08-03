@@ -16,3 +16,4 @@
 .DS_Store
 # never re-commit a stray copy like the one we just deleted
 math-sdk/assets/
+Assets/audio/*.zip

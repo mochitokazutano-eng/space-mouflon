@@ -6,9 +6,37 @@ import { stateBet } from 'state-shared';
 import { eventEmitter } from './eventEmitter';
 import { playBookEvent } from './utils';
 import { winLevelMap, type WinLevel, type WinLevelData } from './winLevelMap';
+import type { MusicName } from './sound.svelte';
 import { stateGame, stateGameDerived } from './stateGame.svelte';
+import { TUMBLE_WIN_SOUND_MAP, type TumbleWinStep } from './constants';
 import type { BookEvent, BookEventOfType, BookEventContext } from './typesBookEvent';
 import type { Position } from './types';
+
+/**
+ * Big-win beds climb while the number counts up. Every big tier starts on `bgm_winlevel_big`
+ * (see winLevelMap) and steps up at these fractions of the tier's own presentDuration, so the
+ * escalation uses the engine's existing thresholds rather than new ones.
+ */
+const BIG_WIN_ESCALATION: Partial<Record<WinLevel, { at: number; bgm: MusicName }[]>> = {
+	7: [{ at: 0.5, bgm: 'bgm_winlevel_epic' }],
+	8: [{ at: 0.45, bgm: 'bgm_winlevel_epic' }],
+	9: [
+		{ at: 0.4, bgm: 'bgm_winlevel_epic' },
+		{ at: 0.75, bgm: 'bgm_winlevel_mega' },
+	],
+	10: [
+		{ at: 0.35, bgm: 'bgm_winlevel_epic' },
+		{ at: 0.7, bgm: 'bgm_winlevel_mega' },
+	],
+};
+
+let bigWinEscalationTimers: ReturnType<typeof setTimeout>[] = [];
+let bigWinPresenting = false;
+
+const clearBigWinEscalation = () => {
+	bigWinEscalationTimers.forEach((timer) => clearTimeout(timer));
+	bigWinEscalationTimers = [];
+};
 
 const winLevelSoundsPlay = ({ winLevelData }: { winLevelData: WinLevelData }) => {
 	if (winLevelData?.alias === 'max') eventEmitter.broadcastAsync({ type: 'uiHide' });
@@ -19,14 +47,30 @@ const winLevelSoundsPlay = ({ winLevelData }: { winLevelData: WinLevelData }) =>
 		eventEmitter.broadcast({ type: 'soundMusic', name: winLevelData.sound.bgm });
 	}
 	if (winLevelData?.type === 'big') {
+		bigWinPresenting = true;
 		eventEmitter.broadcast({ type: 'soundLoop', name: 'sfx_bigwin_coinloop' });
+
+		clearBigWinEscalation();
+		bigWinEscalationTimers = (BIG_WIN_ESCALATION[winLevelData.level] ?? []).map((step) =>
+			setTimeout(
+				() => eventEmitter.broadcast({ type: 'soundMusic', name: step.bgm }),
+				winLevelData.presentDuration * step.at,
+			),
+		);
 	}
 };
 
 const winLevelSoundsStop = () => {
+	clearBigWinEscalation();
 	eventEmitter.broadcast({ type: 'soundStop', name: 'sfx_bigwin_coinloop' });
-	if (stateBet.activeBetModeKey === 'SUPERSPIN' || stateGame.gameType === 'freeSpins') {
-		// check if SUPERSPIN, when finishing a bet.
+
+	if (bigWinPresenting) {
+		// count-up ended: stinger + coins off, then the panel resolve
+		bigWinPresenting = false;
+		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_youwon_panel', forcePlay: true });
+	}
+
+	if (stateGame.gameType === 'freeSpins') {
 		eventEmitter.broadcast({ type: 'soundMusic', name: 'bgm_freespin' });
 	} else {
 		eventEmitter.broadcast({ type: 'soundMusic', name: 'bgm_main' });
@@ -56,10 +100,19 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		stateGame.gameType = (bookEvent.gameType as string) === 'freegame' ? 'freeSpins' : 'basegame';
 		await stateGameDerived.enhancedBoard.spin({ revealEvent: bookEvent });
 		eventEmitter.broadcast({ type: 'soundScatterCounterClear' });
+		// new spin, new cascade chain
+		stateGame.cascadeStep = 0;
 	},
 	winInfo: async (bookEvent: BookEventOfType<'winInfo'>) => {
+		// cascade chain step n -> tumble_win_{min(n,5)}: the pitch climbs with the chain, which
+		// is what makes a long cascade feel like an event.
+		stateGame.cascadeStep = stateGame.cascadeStep + 1;
+		const tumbleWinName = TUMBLE_WIN_SOUND_MAP[
+			Math.min(stateGame.cascadeStep, 5) as TumbleWinStep
+		];
+
 		const promise1 = async () => {
-			eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_winlevel_small' });
+			eventEmitter.broadcast({ type: 'soundOnce', name: tumbleWinName, forcePlay: true });
 			await animateSymbols({ positions: _.flatten(bookEvent.wins.map((win) => win.positions)) });
 		};
 
@@ -95,14 +148,20 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 	},
 	freeSpinTrigger: async (bookEvent: BookEventOfType<'freeSpinTrigger'>) => {
 		// animate scatters
-		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_scatter_win_v2' });
+		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_scatter_win' });
 		await animateSymbols({ positions: bookEvent.positions });
-		// show free spin intro
-		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_superfreespin' });
+		// show free spin intro: duck the base bed under the jingle, then swap beds
+		eventEmitter.broadcast({
+			type: 'soundFade',
+			name: 'bgm_main',
+			from: 1,
+			to: 0.25,
+			duration: 400,
+		});
 		await eventEmitter.broadcastAsync({ type: 'uiHide' });
 		await eventEmitter.broadcastAsync({ type: 'transition' });
 		eventEmitter.broadcast({ type: 'freeSpinIntroShow' });
-		eventEmitter.broadcast({ type: 'soundOnce', name: 'jng_intro_fs' });
+		eventEmitter.broadcast({ type: 'soundOnce', name: 'jng_intro_fs', forcePlay: true });
 		eventEmitter.broadcast({ type: 'soundMusic', name: 'bgm_freespin' });
 		await eventEmitter.broadcastAsync({
 			type: 'freeSpinIntroUpdate',
@@ -152,7 +211,6 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		eventEmitter.broadcast({ type: 'boardFrameGlowHide' });
 		eventEmitter.broadcast({ type: 'globalMultiplierHide' });
 		eventEmitter.broadcast({ type: 'freeSpinOutroShow' });
-		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_youwon_panel' });
 		winLevelSoundsPlay({ winLevelData });
 		await eventEmitter.broadcastAsync({
 			type: 'freeSpinOutroCountUp',
@@ -178,7 +236,8 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		});
 		eventEmitter.broadcast({ type: 'multiplierBoardShow' });
 		eventEmitter.broadcast({ type: 'multiplierBoardInit' });
-		eventEmitter.broadcast({ type: 'soundOnce', name: 'tumble_win_4' });
+		// the meteors are about to glide together and sum
+		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_multiplier_combine_a' });
 		await eventEmitter.broadcastAsync({ type: 'multiplierBoardAnimate' });
 		eventEmitter.broadcast({ type: 'boardWithMovingMultiplierTexts' });
 		await eventEmitter.broadcastAsync({ type: 'multiplierBoardMove' });
@@ -189,9 +248,11 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 			type: 'multiplierTotalUpdate',
 			totalMultiplier: bookEvent.winInfo.boardMult,
 		});
-		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_multiplier_win' });
+		// ratchet resolving on a bell — lands with the total's readout
+		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_multiplier_up' });
 		await eventEmitter.broadcastAsync({ type: 'multiplierTotalAnimate' });
-		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_multiplier_explosion_a' });
+		// the multiplier slamming onto the win total
+		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_multiplier_win' });
 		eventEmitter.broadcast({ type: 'multiplierTotalHide' });
 		await eventEmitter.broadcastAsync({
 			type: 'tumbleWinAmountUpdate',
@@ -203,13 +264,14 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		eventEmitter.broadcast({ type: 'boardHide' });
 		eventEmitter.broadcast({ type: 'tumbleBoardShow' });
 		eventEmitter.broadcast({ type: 'tumbleBoardInit', addingBoard: bookEvent.newSymbols });
-		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_multiplier_explosion_b' });
 		await eventEmitter.broadcastAsync({
 			type: 'tumbleBoardExplode',
 			explodingPositions: bookEvent.explodingSymbols,
 		});
 		eventEmitter.broadcast({ type: 'tumbleBoardRemoveExploded' });
 		await eventEmitter.broadcastAsync({ type: 'tumbleBoardSlideDown' });
+		// board refilled
+		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_symbols_landing', forcePlay: true });
 		eventEmitter.broadcast({
 			type: 'boardSettle',
 			board: stateGameDerived

@@ -43,7 +43,8 @@
 	onMount(async () => {
 		if (showMultiplier) {
 			await waitForTimeout(SECOND);
-			context.eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_multiplier_combine_a' });
+			// no cue here: sfx_multiplier_combine_a is the meteors-summing cue and fires once per
+			// meteor flow in boardMultiplierInfo — firing it per cluster amount doubled it up
 			await scale.set(0.1, { duration: 200 / stateBetDerived.timeScale() });
 			await scale.set(1, { duration: 200 / stateBetDerived.timeScale() });
 		}

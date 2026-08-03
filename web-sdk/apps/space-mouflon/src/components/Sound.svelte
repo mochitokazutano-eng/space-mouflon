@@ -1,5 +1,5 @@
 <script lang="ts" module>
-	import { sound, type MusicName, type SoundEffectName, type SoundName } from '../game/sound';
+	import { sound, type MusicName, type SoundEffectName, type SoundName } from '../game/sound.svelte';
 
 	export type EmitterEventSound =
 		| { type: 'soundMusic'; name: MusicName }
@@ -26,8 +26,6 @@
 		// ui
 		soundBetMode: async ({ betModeKey }) => {
 			if (betModeKey === 'SUPERSPIN') {
-				// check if SUPERSPIN, when changing the bet mode.
-				sound.players.once.play({ name: 'sfx_winlevel_end' });
 				await waitForTimeout(SECOND);
 				sound.players.music.play({ name: 'bgm_freespin' });
 			} else {

@@ -18,6 +18,8 @@ import {
 	SPIN_OPTIONS_FAST,
 	INITIAL_SYMBOL_STATE,
 	SCATTER_LAND_SOUND_MAP,
+	REEL_STOP_SOUND_MAP,
+	type ReelStopIndex,
 } from './constants';
 
 const onSymbolLand = ({ rawSymbol }: { rawSymbol: RawSymbol }) => {
@@ -44,9 +46,11 @@ const board = _.range(BOARD_DIMENSIONS.x).map((reelIndex) => {
 		initialSymbols: INITIAL_BOARD[reelIndex],
 		initialSymbolState: INITIAL_SYMBOL_STATE,
 		onReelStopping: () => {
+			// _1.._6 left to right: the reel-stop variants each step up a fraction of a semitone,
+			// so settling in order reads as a rising cadence as the board fills.
 			eventEmitter.broadcast({
 				type: 'soundOnce',
-				name: 'sfx_reel_stop_1',
+				name: REEL_STOP_SOUND_MAP[Math.min(reelIndex + 1, 6) as ReelStopIndex],
 				forcePlay: !stateBet.isTurbo,
 			});
 		},
@@ -86,6 +90,8 @@ export const stateGame = $state({
 	tumbleBoardBase: [] as TumbleSymbol[][],
 	multiplierBoard: [] as (MultiplierSymbol | undefined)[][],
 	scatterCounter: 0,
+	/** cascade chain step of the current spin; drives the tumble_win_1..5 ladder */
+	cascadeStep: 0,
 });
 
 // Portrait stacks the whole control tower under the reels, so the board sits above centre
@@ -117,9 +123,9 @@ const tumbleBoardCombined = () => {
 };
 
 const scatterLandIndex = () => {
-	if (stateGame.scatterCounter > 5) return 5;
+	if (stateGame.scatterCounter > 4) return 4;
 	if (stateGame.scatterCounter < 1) return 1;
-	return stateGame.scatterCounter as 1 | 2 | 3 | 4 | 5;
+	return stateGame.scatterCounter as 1 | 2 | 3 | 4;
 };
 
 const { enhanceBoard } = createEnhanceBoard();

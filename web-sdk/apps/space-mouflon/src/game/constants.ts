@@ -177,10 +177,34 @@ export const SYMBOL_INFO_MAP = {
 	},
 } as const;
 
+// Cascade wins climb in pitch by chain step, clamped at 5.
+export const TUMBLE_WIN_SOUND_MAP = {
+	1: 'tumble_win_1',
+	2: 'tumble_win_2',
+	3: 'tumble_win_3',
+	4: 'tumble_win_4',
+	5: 'tumble_win_5',
+} as const;
+
+export type TumbleWinStep = keyof typeof TUMBLE_WIN_SOUND_MAP;
+
+// Reel stops fire left to right, one variant per reel, for a rising cadence.
+export const REEL_STOP_SOUND_MAP = {
+	1: 'sfx_reel_stop_1',
+	2: 'sfx_reel_stop_2',
+	3: 'sfx_reel_stop_3',
+	4: 'sfx_reel_stop_4',
+	5: 'sfx_reel_stop_5',
+	6: 'sfx_reel_stop_6',
+} as const;
+
+export type ReelStopIndex = keyof typeof REEL_STOP_SOUND_MAP;
+
+// Scatter stops ladder by scatter COUNT, not reel index — the 4th is the trigger and is the
+// loudest cue in the pack's ladder. Counts above 4 stay on _4.
 export const SCATTER_LAND_SOUND_MAP = {
 	1: 'sfx_scatter_stop_1',
 	2: 'sfx_scatter_stop_2',
 	3: 'sfx_scatter_stop_3',
 	4: 'sfx_scatter_stop_4',
-	5: 'sfx_scatter_stop_5',
 } as const;

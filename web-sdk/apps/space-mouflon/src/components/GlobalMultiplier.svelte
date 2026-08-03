@@ -49,11 +49,6 @@
 
 			if (isReset) {
 				await waitForTimeout(300);
-				context.eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_multiplier_reset' });
-			}
-
-			if (isIncrement) {
-				context.eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_multiplier_update' });
 			}
 
 			if (isReset || isIncrement) {

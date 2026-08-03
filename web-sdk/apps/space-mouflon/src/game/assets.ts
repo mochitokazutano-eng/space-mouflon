@@ -188,9 +188,4 @@ export default {
 		type: 'spriteSheet',
 		src: new URL('../../assets/sprites/coin/SD2_Coin.json', import.meta.url).href,
 	},
-	sound: {
-		type: 'audio',
-		src: new URL('../../assets/audio/sounds.json', import.meta.url).href,
-		preload: true,
-	},
 } as const;

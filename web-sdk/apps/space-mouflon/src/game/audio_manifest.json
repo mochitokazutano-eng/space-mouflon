@@ -1,0 +1,455 @@
+{
+  "game": "Space Mouflon",
+  "provider": "Mochi Labs",
+  "version": 1,
+  "generated": "2026-08-03",
+  "format": {
+    "primary": "ogg",
+    "fallback": "mp3",
+    "sampleRate": 44100,
+    "channels": 2,
+    "note": "Vorbis is sample-exact; LAME adds ~40 ms of encoder padding. Always use the .ogg for anything with loop:true."
+  },
+  "busses": {
+    "music": 0.45,
+    "sfx": 0.85,
+    "ui": 0.7
+  },
+  "key": "A minor",
+  "tempo": {
+    "base": 110,
+    "freespin": 124,
+    "stinger": 120
+  },
+  "groups": [
+    {
+      "name": "Music",
+      "note": "Looping beds. Play with loop:true and crossfade on state change.",
+      "keys": [
+        "bgm_main",
+        "bgm_freespin"
+      ]
+    },
+    {
+      "name": "Core spin / reel",
+      "note": "Fire-and-forget one-shots.",
+      "keys": [
+        "sfx_btn_spin",
+        "sfx_btn_general",
+        "sfx_reel_stop_1",
+        "sfx_reel_stop_2",
+        "sfx_reel_stop_3",
+        "sfx_reel_stop_4",
+        "sfx_reel_stop_5",
+        "sfx_reel_stop_6",
+        "sfx_symbols_landing"
+      ]
+    },
+    {
+      "name": "Tumble / cascade wins",
+      "note": "Play _1 on the first cascade and step up per chain step; clamp at _5.",
+      "keys": [
+        "tumble_win_1",
+        "tumble_win_2",
+        "tumble_win_3",
+        "tumble_win_4",
+        "tumble_win_5"
+      ]
+    },
+    {
+      "name": "Win levels",
+      "note": "Resolve of the whole spin, chosen by win/bet ratio.",
+      "keys": [
+        "sfx_winlevel_small",
+        "sfx_winlevel_standard",
+        "sfx_winlevel_nice",
+        "sfx_winlevel_substantial"
+      ]
+    },
+    {
+      "name": "Scatter / free spins",
+      "note": "Wormhole Portal scatter and the bonus entry.",
+      "keys": [
+        "sfx_scatter_stop_1",
+        "sfx_scatter_stop_2",
+        "sfx_scatter_stop_3",
+        "sfx_scatter_stop_4",
+        "sfx_scatter_win",
+        "jng_intro_fs"
+      ]
+    },
+    {
+      "name": "Cosmic Meteor multiplier",
+      "note": "The signature feature \u2014 these four carry the game's identity.",
+      "keys": [
+        "sfx_multiplier_landing",
+        "sfx_multiplier_combine_a",
+        "sfx_multiplier_up",
+        "sfx_multiplier_win"
+      ]
+    },
+    {
+      "name": "Big-win escalation",
+      "note": "Stingers loop under the counter; the panel sound ends it.",
+      "keys": [
+        "bgm_winlevel_big",
+        "bgm_winlevel_epic",
+        "bgm_winlevel_mega",
+        "sfx_bigwin_coinloop",
+        "sfx_youwon_panel"
+      ]
+    }
+  ],
+  "sounds": [
+    {
+      "key": "bgm_main",
+      "ogg": "ogg/bgm_main.ogg",
+      "mp3": "mp3/bgm_main.mp3",
+      "duration": 130.909,
+      "loop": true,
+      "bus": "music",
+      "gain": 0.55,
+      "description": "Base game music loop. 110 BPM, A minor. 15 four-bar cycles: intro pad (0:00) -> drums+bass (0:35) -> full melody (1:10) -> breakdown (1:45) -> loops."
+    },
+    {
+      "key": "bgm_freespin",
+      "ogg": "ogg/bgm_freespin.ogg",
+      "mp3": "mp3/bgm_freespin.mp3",
+      "duration": 69.677,
+      "loop": true,
+      "bus": "music",
+      "gain": 0.6,
+      "description": "Free spins loop. 124 BPM, driving four-on-floor + 16th arp. Same key as base so it crossfades cleanly."
+    },
+    {
+      "key": "sfx_btn_spin",
+      "ogg": "ogg/sfx_btn_spin.ogg",
+      "mp3": "mp3/sfx_btn_spin.mp3",
+      "duration": 1.0,
+      "loop": false,
+      "bus": "sfx",
+      "gain": 0.85,
+      "description": "Spin button press: click + weight + energy charge."
+    },
+    {
+      "key": "sfx_btn_general",
+      "ogg": "ogg/sfx_btn_general.ogg",
+      "mp3": "mp3/sfx_btn_general.mp3",
+      "duration": 0.06,
+      "loop": false,
+      "bus": "ui",
+      "gain": 0.7,
+      "description": "Generic UI click. 60 ms."
+    },
+    {
+      "key": "sfx_reel_stop_1",
+      "ogg": "ogg/sfx_reel_stop_1.ogg",
+      "mp3": "mp3/sfx_reel_stop_1.mp3",
+      "duration": 0.24,
+      "loop": false,
+      "bus": "sfx",
+      "gain": 0.8,
+      "description": "Reel/symbol land. Use _1 for all reels, or _1.._6 left-to-right for a rising cadence."
+    },
+    {
+      "key": "sfx_reel_stop_2",
+      "ogg": "ogg/sfx_reel_stop_2.ogg",
+      "mp3": "mp3/sfx_reel_stop_2.mp3",
+      "duration": 0.24,
+      "loop": false,
+      "bus": "sfx",
+      "gain": 0.8,
+      "description": "Reel 2 land (pitched +0.9 semitone)."
+    },
+    {
+      "key": "sfx_reel_stop_3",
+      "ogg": "ogg/sfx_reel_stop_3.ogg",
+      "mp3": "mp3/sfx_reel_stop_3.mp3",
+      "duration": 0.24,
+      "loop": false,
+      "bus": "sfx",
+      "gain": 0.8,
+      "description": "Reel 3 land."
+    },
+    {
+      "key": "sfx_reel_stop_4",
+      "ogg": "ogg/sfx_reel_stop_4.ogg",
+      "mp3": "mp3/sfx_reel_stop_4.mp3",
+      "duration": 0.24,
+      "loop": false,
+      "bus": "sfx",
+      "gain": 0.8,
+      "description": "Reel 4 land."
+    },
+    {
+      "key": "sfx_reel_stop_5",
+      "ogg": "ogg/sfx_reel_stop_5.ogg",
+      "mp3": "mp3/sfx_reel_stop_5.mp3",
+      "duration": 0.24,
+      "loop": false,
+      "bus": "sfx",
+      "gain": 0.8,
+      "description": "Reel 5 land."
+    },
+    {
+      "key": "sfx_reel_stop_6",
+      "ogg": "ogg/sfx_reel_stop_6.ogg",
+      "mp3": "mp3/sfx_reel_stop_6.mp3",
+      "duration": 0.24,
+      "loop": false,
+      "bus": "sfx",
+      "gain": 0.8,
+      "description": "Reel 6 land."
+    },
+    {
+      "key": "sfx_symbols_landing",
+      "ogg": "ogg/sfx_symbols_landing.ogg",
+      "mp3": "mp3/sfx_symbols_landing.mp3",
+      "duration": 1.2,
+      "loop": false,
+      "bus": "sfx",
+      "gain": 0.8,
+      "description": "Full board settling after a drop/cascade refill."
+    },
+    {
+      "key": "tumble_win_1",
+      "ogg": "ogg/tumble_win_1.ogg",
+      "mp3": "mp3/tumble_win_1.mp3",
+      "duration": 1.0,
+      "loop": false,
+      "bus": "sfx",
+      "gain": 0.85,
+      "description": "Cascade win pop, chain step 1."
+    },
+    {
+      "key": "tumble_win_2",
+      "ogg": "ogg/tumble_win_2.ogg",
+      "mp3": "mp3/tumble_win_2.mp3",
+      "duration": 1.0,
+      "loop": false,
+      "bus": "sfx",
+      "gain": 0.85,
+      "description": "Chain step 2 (+2 semitones)."
+    },
+    {
+      "key": "tumble_win_3",
+      "ogg": "ogg/tumble_win_3.ogg",
+      "mp3": "mp3/tumble_win_3.mp3",
+      "duration": 1.0,
+      "loop": false,
+      "bus": "sfx",
+      "gain": 0.85,
+      "description": "Chain step 3 (+3)."
+    },
+    {
+      "key": "tumble_win_4",
+      "ogg": "ogg/tumble_win_4.ogg",
+      "mp3": "mp3/tumble_win_4.mp3",
+      "duration": 1.0,
+      "loop": false,
+      "bus": "sfx",
+      "gain": 0.85,
+      "description": "Chain step 4 (+5)."
+    },
+    {
+      "key": "tumble_win_5",
+      "ogg": "ogg/tumble_win_5.ogg",
+      "mp3": "mp3/tumble_win_5.mp3",
+      "duration": 1.0,
+      "loop": false,
+      "bus": "sfx",
+      "gain": 0.85,
+      "description": "Chain step 5+ (+7). Clamp here."
+    },
+    {
+      "key": "sfx_winlevel_small",
+      "ogg": "ogg/sfx_winlevel_small.ogg",
+      "mp3": "mp3/sfx_winlevel_small.mp3",
+      "duration": 1.0,
+      "loop": false,
+      "bus": "sfx",
+      "gain": 0.85,
+      "description": "Small win."
+    },
+    {
+      "key": "sfx_winlevel_standard",
+      "ogg": "ogg/sfx_winlevel_standard.ogg",
+      "mp3": "mp3/sfx_winlevel_standard.mp3",
+      "duration": 1.25,
+      "loop": false,
+      "bus": "sfx",
+      "gain": 0.85,
+      "description": "Standard win."
+    },
+    {
+      "key": "sfx_winlevel_nice",
+      "ogg": "ogg/sfx_winlevel_nice.ogg",
+      "mp3": "mp3/sfx_winlevel_nice.mp3",
+      "duration": 1.5,
+      "loop": false,
+      "bus": "sfx",
+      "gain": 0.9,
+      "description": "Nice win."
+    },
+    {
+      "key": "sfx_winlevel_substantial",
+      "ogg": "ogg/sfx_winlevel_substantial.ogg",
+      "mp3": "mp3/sfx_winlevel_substantial.mp3",
+      "duration": 2.5,
+      "loop": false,
+      "bus": "sfx",
+      "gain": 0.9,
+      "description": "Substantial win."
+    },
+    {
+      "key": "sfx_scatter_stop_1",
+      "ogg": "ogg/sfx_scatter_stop_1.ogg",
+      "mp3": "mp3/sfx_scatter_stop_1.mp3",
+      "duration": 1.0,
+      "loop": false,
+      "bus": "sfx",
+      "gain": 0.9,
+      "description": "1st scatter lands. Vortex sweep + bell."
+    },
+    {
+      "key": "sfx_scatter_stop_2",
+      "ogg": "ogg/sfx_scatter_stop_2.ogg",
+      "mp3": "mp3/sfx_scatter_stop_2.mp3",
+      "duration": 1.0,
+      "loop": false,
+      "bus": "sfx",
+      "gain": 0.9,
+      "description": "2nd scatter (+2 semitones) \u2014 tension ladder."
+    },
+    {
+      "key": "sfx_scatter_stop_3",
+      "ogg": "ogg/sfx_scatter_stop_3.ogg",
+      "mp3": "mp3/sfx_scatter_stop_3.mp3",
+      "duration": 1.0,
+      "loop": false,
+      "bus": "sfx",
+      "gain": 0.92,
+      "description": "3rd scatter (+4)."
+    },
+    {
+      "key": "sfx_scatter_stop_4",
+      "ogg": "ogg/sfx_scatter_stop_4.ogg",
+      "mp3": "mp3/sfx_scatter_stop_4.mp3",
+      "duration": 1.0,
+      "loop": false,
+      "bus": "sfx",
+      "gain": 0.95,
+      "description": "4th scatter (+6) \u2014 this is the trigger, land it loud."
+    },
+    {
+      "key": "sfx_scatter_win",
+      "ogg": "ogg/sfx_scatter_win.ogg",
+      "mp3": "mp3/sfx_scatter_win.mp3",
+      "duration": 2.0,
+      "loop": false,
+      "bus": "sfx",
+      "gain": 0.95,
+      "description": "Scatters pay / trigger confirmed."
+    },
+    {
+      "key": "jng_intro_fs",
+      "ogg": "ogg/jng_intro_fs.ogg",
+      "mp3": "mp3/jng_intro_fs.mp3",
+      "duration": 2.0,
+      "loop": false,
+      "bus": "sfx",
+      "gain": 1.0,
+      "description": "Free-spins intro jingle. A minor -> C major lift. Duck bgm_main under this, then swap to bgm_freespin."
+    },
+    {
+      "key": "sfx_multiplier_landing",
+      "ogg": "ogg/sfx_multiplier_landing.ogg",
+      "mp3": "mp3/sfx_multiplier_landing.mp3",
+      "duration": 1.0,
+      "loop": false,
+      "bus": "sfx",
+      "gain": 0.95,
+      "description": "Meteor lands: incoming doppler screech, impact, ember crackle."
+    },
+    {
+      "key": "sfx_multiplier_combine_a",
+      "ogg": "ogg/sfx_multiplier_combine_a.ogg",
+      "mp3": "mp3/sfx_multiplier_combine_a.mp3",
+      "duration": 1.2,
+      "loop": false,
+      "bus": "sfx",
+      "gain": 0.95,
+      "description": "Meteor values sum: three bells glide together and merge into one."
+    },
+    {
+      "key": "sfx_multiplier_up",
+      "ogg": "ogg/sfx_multiplier_up.ogg",
+      "mp3": "mp3/sfx_multiplier_up.mp3",
+      "duration": 1.5,
+      "loop": false,
+      "bus": "sfx",
+      "gain": 0.9,
+      "description": "Value ticks up. Accelerating ratchet resolving on a bell at ~1.03 s \u2014 land the final number there."
+    },
+    {
+      "key": "sfx_multiplier_win",
+      "ogg": "ogg/sfx_multiplier_win.ogg",
+      "mp3": "mp3/sfx_multiplier_win.mp3",
+      "duration": 3.8,
+      "loop": false,
+      "bus": "sfx",
+      "gain": 1.0,
+      "description": "Total multiplier applied to the cascade. Two-stage: impact at 0.85 s, C-major payoff at 2.0 s."
+    },
+    {
+      "key": "bgm_winlevel_big",
+      "ogg": "ogg/bgm_winlevel_big.ogg",
+      "mp3": "mp3/bgm_winlevel_big.mp3",
+      "duration": 8.0,
+      "loop": true,
+      "bus": "music",
+      "gain": 0.7,
+      "description": "Big win stinger. 8.0 s seamless loop under the count-up."
+    },
+    {
+      "key": "bgm_winlevel_epic",
+      "ogg": "ogg/bgm_winlevel_epic.ogg",
+      "mp3": "mp3/bgm_winlevel_epic.mp3",
+      "duration": 8.0,
+      "loop": true,
+      "bus": "music",
+      "gain": 0.75,
+      "description": "Epic win stinger. Denser, adds choir."
+    },
+    {
+      "key": "bgm_winlevel_mega",
+      "ogg": "ogg/bgm_winlevel_mega.ogg",
+      "mp3": "mp3/bgm_winlevel_mega.mp3",
+      "duration": 8.0,
+      "loop": true,
+      "bus": "music",
+      "gain": 0.8,
+      "description": "Mega win stinger. Octave up, full percussion."
+    },
+    {
+      "key": "sfx_bigwin_coinloop",
+      "ogg": "ogg/sfx_bigwin_coinloop.ogg",
+      "mp3": "mp3/sfx_bigwin_coinloop.mp3",
+      "duration": 17.0,
+      "loop": true,
+      "bus": "sfx",
+      "gain": 0.55,
+      "description": "Coin shower loop, 17.0 s seamless. Layer under the stingers, fade out with the counter."
+    },
+    {
+      "key": "sfx_youwon_panel",
+      "ogg": "ogg/sfx_youwon_panel.ogg",
+      "mp3": "mp3/sfx_youwon_panel.mp3",
+      "duration": 3.0,
+      "loop": false,
+      "bus": "sfx",
+      "gain": 0.95,
+      "description": "'YOU WON' panel outro. Stop the stinger and coin loop on this."
+    }
+  ]
+}
