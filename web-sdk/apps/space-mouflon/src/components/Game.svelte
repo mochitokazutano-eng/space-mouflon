@@ -36,8 +36,12 @@
 	const context = getContext();
 
 	// Space Mouflon logo lockup is 1488x482 (aspect ~3.09); size to fit the top-right slot.
-	const LOGO_WIDTH = 320;
-	const LOGO_HEIGHT = (LOGO_WIDTH * 482) / 1488;
+	// The slot lives in raw canvas space, so on narrow portrait screens the fixed width would
+	// eat almost the whole width — cap it at a share of the canvas.
+	const LOGO_WIDTH = $derived(
+		Math.min(320, context.stateLayoutDerived.canvasSizes().width * 0.55),
+	);
+	const LOGO_HEIGHT = $derived((LOGO_WIDTH * 482) / 1488);
 
 	onMount(() => (context.stateLayout.showLoadingScreen = true));
 

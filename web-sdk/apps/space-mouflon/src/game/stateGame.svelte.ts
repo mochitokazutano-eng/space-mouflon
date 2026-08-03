@@ -88,9 +88,17 @@ export const stateGame = $state({
 	scatterCounter: 0,
 });
 
+// Portrait stacks the whole control tower under the reels, so the board sits above centre
+// there — that closes the dead gap under the logo and leaves room for the control rows.
+const BOARD_CENTER_Y_RATIO = { normal: 0.5, portrait: 0.42 };
+
 const boardLayout = () => ({
 	x: stateLayoutDerived.mainLayout().width * 0.5,
-	y: stateLayoutDerived.mainLayout().height * 0.5,
+	y:
+		stateLayoutDerived.mainLayout().height *
+		(stateLayoutDerived.layoutType() === 'portrait'
+			? BOARD_CENTER_Y_RATIO.portrait
+			: BOARD_CENTER_Y_RATIO.normal),
 	anchor: { x: 0.5, y: 0.5 },
 	pivot: { x: BOARD_SIZES.width / 2, y: BOARD_SIZES.height / 2 },
 	...BOARD_SIZES,

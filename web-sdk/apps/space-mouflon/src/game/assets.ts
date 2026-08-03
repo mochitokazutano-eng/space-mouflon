@@ -30,10 +30,14 @@ export default {
 	bgBasePortrait: {
 		type: 'sprite',
 		src: new URL('../../assets/sprites/backgrounds/bg_base_portrait.png', import.meta.url).href,
+		// preloaded like the landscape pair: in portrait these are the first thing drawn, and
+		// without it the background Sprite logs a missing-key error until the second load pass.
+		preload: true,
 	},
 	bgFreespinsPortrait: {
 		type: 'sprite',
 		src: new URL('../../assets/sprites/backgrounds/bg_freespins_portrait.png', import.meta.url).href,
+		preload: true,
 	},
 	H1: {
 		type: 'sprite',
