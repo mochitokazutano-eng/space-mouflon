@@ -122,6 +122,14 @@ export default {
 		type: 'font',
 		src: new URL('../../assets/fonts/purpleFont/mm_purple.xml', import.meta.url).href,
 	},
+	explosion: {
+		type: 'spine',
+		src: {
+			atlas: new URL('../../assets/spines/symbols3/symbols3.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/symbols3/explosion.json', import.meta.url).href,
+			scale: 2,
+		},
+	},
 	bigwin: {
 		type: 'spine',
 		src: {
