@@ -54,10 +54,13 @@ const activeBetMode = () => stateMeta.betModeMeta?.[stateBet.activeBetModeKey.to
 	?? null;
 const isContinuousBet = () => stateBet.autoSpinsCounter > 1 || stateBet.isSpaceHold;
 const timeScale = () => (stateBet.isTurbo ? 2 : 1);
-const betCostMultiplier = () =>
-	stateBetDerived.activeBetMode().type === 'activate'
-		? stateBetDerived.activeBetMode().costMultiplier
-		: 1;
+const betCostMultiplier = () => {
+	// activeBetMode() is null whenever betModeMeta has no entry for the active key. Throwing
+	// here would reject the awaited broadcast chain and stall book playback silently, so fall
+	// back to a 1x cost instead.
+	const betMode = stateBetDerived.activeBetMode();
+	return betMode?.type === 'activate' ? betMode.costMultiplier : 1;
+};
 const betCost = () => stateBet.betAmount * betCostMultiplier();
 const isBetCostAvailable = () => betCost() > 0 && betCost() <= stateBet.balanceAmount;
 const hasAutoBetCounter = () => stateBet.autoSpinsCounter !== 0;
