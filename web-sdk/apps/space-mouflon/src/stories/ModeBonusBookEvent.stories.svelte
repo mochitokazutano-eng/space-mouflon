@@ -16,10 +16,10 @@
 
 	import Game from '../components/Game.svelte';
 	import { setContext } from '../game/context';
-	import { playBookEvent } from '../game/utils';
+	import { playBookEvent, playBet } from '../game/utils';
 	import events from './data/bonus_events';
+	import retriggerBook from './data/retrigger_book';
 
-	
 	setContext();
 </script>
 
@@ -62,6 +62,21 @@
 		skipLoadingScreen: true,
 		data: events.freeSpinTrigger,
 		action: async (data) => await playBookEvent(data, { bookEvents: [] }),
+	})}
+	{template}
+/>
+
+<!--
+	The generated bonus books never retrigger, so this runs a hand-written book instead of a
+	single event: the counter has to reach "8" before the retrigger can push it to "13".
+	Expect: counter total 8 -> 13, no scene transition, no console error.
+-->
+<Story
+	name="freeSpinRetrigger"
+	args={templateArgs({
+		skipLoadingScreen: true,
+		data: retriggerBook,
+		action: async (data) => await playBet({ ...data, state: data.events }),
 	})}
 	{template}
 />

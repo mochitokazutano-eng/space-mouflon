@@ -92,6 +92,13 @@ export const stateGame = $state({
 	scatterCounter: 0,
 	/** cascade chain step of the current spin; drives the tumble_win_1..5 ladder */
 	cascadeStep: 0,
+	/**
+	 * Free spins awarded so far in the current feature. `freeSpinRetrigger` carries the NEW
+	 * total rather than the delta, so the "+N FREE SPINS" beat needs the previous total to
+	 * subtract from. Written by freeSpinTrigger/updateFreeSpin/freeSpinRetrigger, which means
+	 * the snapshot resume path (which replays the last updateFreeSpin) restores it too.
+	 */
+	freeSpinTotal: 0,
 });
 
 // Portrait stacks the whole control tower under the reels, so the board sits above centre

@@ -19,6 +19,9 @@ export const playBet = async (bet: Bet) => {
 };
 
 // resume bet
+// Deliberately no 'freeSpinRetrigger' here: the snapshot replays the LAST 'updateFreeSpin',
+// which already carries the post-retrigger {amount,total}, so the restored counter is correct.
+// Adding it would only re-animate the scatters on every resume.
 const BOOK_EVENT_TYPES_TO_RESERVE_FOR_SNAPSHOT = [
 	'updateGlobalMult',
 	'freeSpinTrigger',

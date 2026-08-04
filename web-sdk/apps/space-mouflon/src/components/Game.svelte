@@ -29,6 +29,7 @@
 	import Win from './Win.svelte';
 	import FreeSpinIntro from './FreeSpinIntro.svelte';
 	import FreeSpinCounter from './FreeSpinCounter.svelte';
+	import FreeSpinRetrigger from './FreeSpinRetrigger.svelte';
 	import FreeSpinOutro from './FreeSpinOutro.svelte';
 	import Transition from './Transition.svelte';
 	import I18nTest from './I18nTest.svelte';
@@ -91,6 +92,10 @@
 		<MainContainer>
 			<MultiplierBoard />
 			<MultiplierTotal />
+		</MainContainer>
+
+		<MainContainer>
+			<FreeSpinRetrigger />
 		</MainContainer>
 
 		<UI>

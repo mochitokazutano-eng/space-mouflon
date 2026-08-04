@@ -176,6 +176,7 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 			multiplier: 1, // resets when multiplier === 1
 		});
 		eventEmitter.broadcast({ type: 'freeSpinCounterShow' });
+		stateGame.freeSpinTotal = bookEvent.totalFs;
 		eventEmitter.broadcast({
 			type: 'freeSpinCounterUpdate',
 			current: undefined,
@@ -185,8 +186,38 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		await eventEmitter.broadcastAsync({ type: 'drawerButtonShow' });
 		eventEmitter.broadcast({ type: 'drawerFold' });
 	},
+	/**
+	 * 3+ scatters landing DURING free spins. Deliberately not freeSpinTrigger: we are already in
+	 * the free spins scene, so no uiHide/transition, no gameType change, no bgm swap or
+	 * jng_intro_fs (bgm_freespin is already playing) and no background swap — just the scatter
+	 * animation, the counter's new total, and a short "+N FREE SPINS" beat.
+	 */
+	freeSpinRetrigger: async (bookEvent: BookEventOfType<'freeSpinRetrigger'>) => {
+		// totalFs is the new total, not the delta — see game_config.py's scaling table.
+		const addedFreeSpins = Math.max(bookEvent.totalFs - stateGame.freeSpinTotal, 0);
+		stateGame.freeSpinTotal = bookEvent.totalFs;
+
+		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_scatter_win' });
+		await animateSymbols({ positions: bookEvent.positions });
+
+		// bump the total straight away so "x of y" reads the awarded spins before the next spin
+		eventEmitter.broadcast({ type: 'freeSpinCounterShow' });
+		eventEmitter.broadcast({
+			type: 'freeSpinCounterUpdate',
+			current: undefined,
+			total: bookEvent.totalFs,
+		});
+
+		if (addedFreeSpins > 0) {
+			await eventEmitter.broadcastAsync({
+				type: 'freeSpinRetriggerShow',
+				amount: addedFreeSpins,
+			});
+		}
+	},
 	updateFreeSpin: async (bookEvent: BookEventOfType<'updateFreeSpin'>) => {
 		eventEmitter.broadcast({ type: 'freeSpinCounterShow' });
+		stateGame.freeSpinTotal = bookEvent.total;
 		eventEmitter.broadcast({
 			type: 'freeSpinCounterUpdate',
 			current: bookEvent.amount,

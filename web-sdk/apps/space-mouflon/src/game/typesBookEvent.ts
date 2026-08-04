@@ -47,6 +47,15 @@ type BookEventFreeSpinTrigger = {
 	positions: Position[];
 };
 
+// Emitted by fs_trigger_event(freegame_trigger=True) when 3+ scatters land during free spins.
+// `totalFs` is the NEW total after the award, not the delta.
+type BookEventFreeSpinRetrigger = {
+	index: number;
+	type: 'freeSpinRetrigger';
+	totalFs: number;
+	positions: Position[];
+};
+
 type BookEventUpdateFreeSpin = {
 	index: number;
 	type: 'updateFreeSpin';
@@ -114,6 +123,7 @@ export type BookEvent =
 	| BookEventSetTumbleWin
 	| BookEventSetTotalWin
 	| BookEventFreeSpinTrigger
+	| BookEventFreeSpinRetrigger
 	| BookEventUpdateFreeSpin
 	| BookEventUpdateGlobalMult
 	| BookEventTumbleBoard
