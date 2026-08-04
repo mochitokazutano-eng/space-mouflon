@@ -24,6 +24,9 @@ __pycache__
 *.env
 *.DS_Store
 *.toml
+# ...but the Rust optimizer manifest MUST be tracked: without it a fresh clone
+# cannot build optimization_program and the math will not run.
+!optimization_program/Cargo.toml
 
 **/site/*
 

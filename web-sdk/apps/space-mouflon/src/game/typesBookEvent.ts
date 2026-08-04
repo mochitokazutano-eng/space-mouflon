@@ -83,9 +83,9 @@ type BookEventBoardMultiplierInfo = {
 		positions: (Position & { multiplier: number })[];
 	};
 	winInfo: {
-		tumbleWin: 400;
-		boardMult: 5;
-		totalWin: 2000;
+		tumbleWin: number;
+		boardMult: number;
+		totalWin: number;
 	};
 };
 
@@ -127,7 +127,6 @@ export type BookEvent =
 	| BookEventUpdateFreeSpin
 	| BookEventUpdateGlobalMult
 	| BookEventTumbleBoard
-	| BookEventCreateBonusSnapshot
 	| BookEventFinalWin
 	| BookEventSetWin
 	| BookEventFreeSpinEnd
