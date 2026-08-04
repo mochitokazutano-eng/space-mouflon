@@ -3,15 +3,6 @@ import { sharedAssetsPixi } from 'constants-shared/assets';
 export default {
 	// UI art shared with components-ui-pixi (spin button, pills, plates, icons)
 	...sharedAssetsPixi,
-	loader: {
-		type: 'spine',
-		src: {
-			atlas: new URL('../../assets/spines/loader/loader.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/loader/loader.json', import.meta.url).href,
-			scale: 2,
-		},
-		preload: true,
-	},
 	pressToContinueText: {
 		type: 'sprites',
 		src: new URL('../../assets/sprites/pressToContinueText/pressAnywhere.json', import.meta.url).href,
@@ -82,14 +73,6 @@ export default {
 	S: {
 		type: 'sprite',
 		src: new URL('../../assets/sprites/mouflon/S.png', import.meta.url).href,
-	},
-	explosion: {
-		type: 'spine',
-		src: {
-			atlas: new URL('../../assets/spines/symbols3/symbols3.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/symbols3/explosion.json', import.meta.url).href,
-			scale: 2,
-		},
 	},
 	frameReels: {
 		type: 'sprite',
@@ -167,14 +150,6 @@ export default {
 		type: 'sprites',
 		src: new URL('../../assets/sprites/progressBar/progressBar.json', import.meta.url).href,
 		preload: true,
-	},
-	clusterWin: {
-		type: 'spine',
-		src: {
-			atlas: new URL('../../assets/spines/clusterWin/clusterpay.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/clusterWin/clusterpay.json', import.meta.url).href,
-			scale: 2,
-		},
 	},
 	coins: {
 		type: 'spriteSheet',
