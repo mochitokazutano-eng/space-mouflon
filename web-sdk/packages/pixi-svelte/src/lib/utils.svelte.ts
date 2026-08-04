@@ -57,7 +57,20 @@ export function detectWebGL() {
 	return -1;
 }
 
-export const preloadFont = (): Promise<void> => Promise.resolve();
+export const preloadFont = async (): Promise<void> => {
+	try {
+		if (typeof document !== 'undefined' && document.fonts) {
+			await Promise.all([
+				document.fonts.load('400 16px Figtree'),
+				document.fonts.load('600 16px Figtree'),
+				document.fonts.load('700 16px Figtree'),
+			]);
+			await document.fonts.ready;
+		}
+	} catch (error) {
+		console.error(error);
+	}
+};
 
 export function propsSyncEffect<TProps extends object, TTarget>({
 	props,

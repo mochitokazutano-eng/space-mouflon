@@ -13,6 +13,13 @@ import { stateGame, stateGameDerived } from './stateGame.svelte';
 // context.ts is the one module every entry path loads — SvelteKit routes, every story, and the
 // production build — which is what makes the metadata universally present.
 import './meta';
+// Side-effect import: registers the bundled Figtree @font-face. Must live here, not in
+// global.scss — GlobalStyle.svelte is rendered only from routes/+layout.svelte, so Storybook
+// would never load it. context.ts is the one module every entry path touches.
+import '@fontsource/figtree/400.css';
+import '@fontsource/figtree/600.css';
+import '@fontsource/figtree/700.css';
+
 import { i18nDerived } from '../i18n/i18nDerived';
 
 export const setContext = () => {

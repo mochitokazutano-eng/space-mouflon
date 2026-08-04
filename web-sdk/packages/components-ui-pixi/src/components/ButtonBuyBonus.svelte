@@ -72,7 +72,7 @@
 				align: 'center',
 				wordWrap: true,
 				wordWrapWidth: 200,
-				fontFamily: 'proxima-nova',
+				fontFamily: 'Figtree',
 				fontWeight: '600',
 				fontSize: UI_BASE_FONT_SIZE * 0.9,
 				// white on the dark armed pill, dark on the gold idle pill
