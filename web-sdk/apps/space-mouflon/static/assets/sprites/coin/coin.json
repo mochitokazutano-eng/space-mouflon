@@ -1,0 +1,255 @@
+{
+ "frames": {
+  "1.png": {
+   "frame": {
+    "x": 2,
+    "y": 2,
+    "w": 503,
+    "h": 493
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 91,
+    "y": 96,
+    "w": 503,
+    "h": 493
+   },
+   "sourceSize": {
+    "w": 684,
+    "h": 684
+   }
+  },
+  "2.png": {
+   "frame": {
+    "x": 507,
+    "y": 2,
+    "w": 442,
+    "h": 493
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 121,
+    "y": 96,
+    "w": 442,
+    "h": 493
+   },
+   "sourceSize": {
+    "w": 684,
+    "h": 684
+   }
+  },
+  "3.png": {
+   "frame": {
+    "x": 1012,
+    "y": 2,
+    "w": 274,
+    "h": 493
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 205,
+    "y": 96,
+    "w": 274,
+    "h": 493
+   },
+   "sourceSize": {
+    "w": 684,
+    "h": 684
+   }
+  },
+  "4.png": {
+   "frame": {
+    "x": 1517,
+    "y": 2,
+    "w": 46,
+    "h": 493
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 319,
+    "y": 96,
+    "w": 46,
+    "h": 493
+   },
+   "sourceSize": {
+    "w": 684,
+    "h": 684
+   }
+  },
+  "5.png": {
+   "frame": {
+    "x": 2,
+    "y": 497,
+    "w": 274,
+    "h": 493
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 205,
+    "y": 96,
+    "w": 274,
+    "h": 493
+   },
+   "sourceSize": {
+    "w": 684,
+    "h": 684
+   }
+  },
+  "6.png": {
+   "frame": {
+    "x": 507,
+    "y": 497,
+    "w": 442,
+    "h": 493
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 121,
+    "y": 96,
+    "w": 442,
+    "h": 493
+   },
+   "sourceSize": {
+    "w": 684,
+    "h": 684
+   }
+  },
+  "7.png": {
+   "frame": {
+    "x": 1012,
+    "y": 497,
+    "w": 503,
+    "h": 493
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 91,
+    "y": 96,
+    "w": 503,
+    "h": 493
+   },
+   "sourceSize": {
+    "w": 684,
+    "h": 684
+   }
+  },
+  "8.png": {
+   "frame": {
+    "x": 1517,
+    "y": 497,
+    "w": 442,
+    "h": 493
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 121,
+    "y": 96,
+    "w": 442,
+    "h": 493
+   },
+   "sourceSize": {
+    "w": 684,
+    "h": 684
+   }
+  },
+  "9.png": {
+   "frame": {
+    "x": 2,
+    "y": 992,
+    "w": 274,
+    "h": 493
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 205,
+    "y": 96,
+    "w": 274,
+    "h": 493
+   },
+   "sourceSize": {
+    "w": 684,
+    "h": 684
+   }
+  },
+  "10.png": {
+   "frame": {
+    "x": 507,
+    "y": 992,
+    "w": 46,
+    "h": 493
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 319,
+    "y": 96,
+    "w": 46,
+    "h": 493
+   },
+   "sourceSize": {
+    "w": 684,
+    "h": 684
+   }
+  },
+  "11.png": {
+   "frame": {
+    "x": 1012,
+    "y": 992,
+    "w": 274,
+    "h": 493
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 205,
+    "y": 96,
+    "w": 274,
+    "h": 493
+   },
+   "sourceSize": {
+    "w": 684,
+    "h": 684
+   }
+  },
+  "12.png": {
+   "frame": {
+    "x": 1517,
+    "y": 992,
+    "w": 442,
+    "h": 493
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 121,
+    "y": 96,
+    "w": 442,
+    "h": 493
+   },
+   "sourceSize": {
+    "w": 684,
+    "h": 684
+   }
+  }
+ },
+ "meta": {
+  "app": "mochi-labs procedural",
+  "version": "1.0",
+  "image": "coin.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 2022,
+   "h": 1487
+  },
+  "scale": "2"
+ }
+}

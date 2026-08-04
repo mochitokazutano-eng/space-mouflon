@@ -115,10 +115,6 @@ export default {
 		src: new URL('../../assets/sprites/ui/screen_portrait.png', import.meta.url).href,
 		preload: true,
 	},
-	payFrame: {
-		type: 'sprite',
-		src: new URL('../../assets/sprites/payFrame/payFrame.png', import.meta.url).href,
-	},
 	anticipation: {
 		type: 'spine',
 		src: {
@@ -180,12 +176,8 @@ export default {
 			scale: 2,
 		},
 	},
-	symbolsStatic: {
-		type: 'sprites',
-		src: new URL('../../assets/sprites/symbolsStatic/symbolsStatic.json', import.meta.url).href,
-	},
 	coins: {
 		type: 'spriteSheet',
-		src: new URL('../../assets/sprites/coin/SD2_Coin.json', import.meta.url).href,
+		src: new URL('../../assets/sprites/coin/coin.json', import.meta.url).href,
 	},
 } as const;
