@@ -1,5 +1,3 @@
-import { DEFAULT_BET_MODE_META, DEFAULT_GAME_RULE_META } from './constants';
-
 export type BetModeData = {
 	maxWin?: number;
 	mode: string;
@@ -45,15 +43,18 @@ export type GameRuleData = {
 	title: string;
 };
 
-type GameRuleMeta = {
+export type GameRuleMeta = {
 	gameRules: GameRuleData[];
 	payTable: GameRuleData[];
 	splashScreen: GameRuleData[];
 };
 
+// Empty by design. These used to hold a sample game's bet modes and rules, which pulled sample
+// CDN image URLs into every build that imported this package. Each game assigns both at import
+// time (see the app's game/meta.ts), before anything renders them.
 export const stateMeta = $state({
-	betModeMeta: DEFAULT_BET_MODE_META as BetModeMeta,
-	gameRuleMeta: DEFAULT_GAME_RULE_META as GameRuleMeta,
+	betModeMeta: {} as BetModeMeta,
+	gameRuleMeta: { gameRules: [], payTable: [], splashScreen: [] } as GameRuleMeta,
 });
 
 export const stateMetaDerived = {

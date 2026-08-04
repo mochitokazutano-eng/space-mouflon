@@ -5,7 +5,7 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 
-	import { stateBet, stateBetDerived } from 'state-shared';
+	import { stateBet, stateBetDerived, DEFAULT_BET_MODE_KEY } from 'state-shared';
 
 	import { getContext } from '../context';
 
@@ -26,7 +26,7 @@
 	let stopDisabled = $state(false);
 
 	const bet = () => {
-		if (stateBetDerived.activeBetMode()?.type === 'buy') stateBet.activeBetModeKey = 'BASE';
+		if (stateBetDerived.activeBetMode()?.type === 'buy') stateBet.activeBetModeKey = DEFAULT_BET_MODE_KEY; // prettier-ignore
 		context.eventEmitter.broadcast({ type: 'bet' });
 	};
 

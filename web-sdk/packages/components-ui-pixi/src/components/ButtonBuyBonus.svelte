@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Text } from 'pixi-svelte';
 	import { Button, type ButtonProps } from 'components-pixi';
-	import { stateModal, stateBet, stateBetDerived } from 'state-shared';
+	import { stateModal, stateBet, stateBetDerived, DEFAULT_BET_MODE_KEY } from 'state-shared';
 
 	import UiSprite from './UiSprite.svelte';
 	import { UI_BASE_FONT_SIZE, UI_BASE_SIZE } from '../constants';
@@ -15,7 +15,7 @@
 	const active = $derived(stateBetDerived.activeBetMode()?.type === 'activate');
 
 	const openModal = () => (stateModal.modal = { name: 'buyBonus' });
-	const disableActiveBetMode = () => (stateBet.activeBetModeKey = 'BASE');
+	const disableActiveBetMode = () => (stateBet.activeBetModeKey = DEFAULT_BET_MODE_KEY);
 	const onpress = () => {
 		eventEmitter.broadcast({ type: 'soundPressGeneral' });
 

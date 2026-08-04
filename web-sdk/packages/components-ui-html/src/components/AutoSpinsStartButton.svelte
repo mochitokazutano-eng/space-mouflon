@@ -5,6 +5,7 @@
 		stateBet,
 		stateModal,
 		stateBetDerived,
+		DEFAULT_BET_MODE_KEY,
 		AUTO_SPINS_TEXT_OPTION_MAP,
 		AUTO_SPINS_LOSS_LIMIT_MULTIPLIER_MAP,
 		AUTO_SPINS_SINGLE_WIN_LIMIT_MULTIPLIER_MAP,
@@ -22,7 +23,7 @@
 		stateBet.autoSpinsCounter = AUTO_SPINS_TEXT_OPTION_MAP[stateUi.autoSpinsText];
 		stateBet.autoSpinsLossLimitAmount = stateBet.betAmount * AUTO_SPINS_LOSS_LIMIT_MULTIPLIER_MAP[stateUi.autoSpinsLossLimitText]; // prettier-ignore
 		stateBet.autoSpinsSingleWinLimitAmount = stateBet.betAmount * AUTO_SPINS_SINGLE_WIN_LIMIT_MULTIPLIER_MAP[stateUi.autoSpinsSingleWinLimitText]; // prettier-ignore
-		if (stateBetDerived.activeBetMode()?.type === 'buy') stateBet.activeBetModeKey = 'BASE';
+		if (stateBetDerived.activeBetMode()?.type === 'buy') stateBet.activeBetModeKey = DEFAULT_BET_MODE_KEY;
 		eventEmitter.broadcast({ type: 'soundPressGeneral' });
 		eventEmitter.broadcast({ type: 'autoBet' });
 		stateModal.modal = null;

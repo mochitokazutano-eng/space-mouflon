@@ -5,13 +5,19 @@ export type Currency = string;
 export type BetToResume = BaseBet | null;
 export type BetModeKey = string;
 
+/**
+ * The bet mode a game falls back to: sent verbatim as `mode` to POST /wallet/play whenever no
+ * other mode is active, so it must match a bet mode declared by the math (game_config.py).
+ */
+export const DEFAULT_BET_MODE_KEY = 'base';
+
 export const stateBet = $state({
 	currency: 'USD' as Currency,
 	balanceAmount: 0,
 	betAmount: 1,
 	wageredBetAmount: 1,
 	betToResume: null as BetToResume,
-	activeBetModeKey: 'BASE' as BetModeKey,
+	activeBetModeKey: DEFAULT_BET_MODE_KEY as BetModeKey,
 	winBookEventAmount: 0,
 	autoSpinsLoss: 0,
 	autoSpinsCounter: 0,

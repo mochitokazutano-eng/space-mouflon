@@ -1,6 +1,6 @@
 import { setup, fromPromise, assign } from 'xstate';
 
-import { stateBet, stateBetDerived } from 'state-shared';
+import { stateBet, stateBetDerived, DEFAULT_BET_MODE_KEY } from 'state-shared';
 
 import { context, type Context } from './machineContext';
 import type { PrimaryMachines } from './types';
@@ -8,7 +8,7 @@ import type { PrimaryMachines } from './types';
 const checkSpaceHold = fromPromise(async () => {
 	if (stateBet.isSpaceHold) {
 		if (stateBetDerived.activeBetMode()?.type === 'buy') {
-			stateBet.activeBetModeKey = 'BASE';
+			stateBet.activeBetModeKey = DEFAULT_BET_MODE_KEY;
 			return;
 		}
 

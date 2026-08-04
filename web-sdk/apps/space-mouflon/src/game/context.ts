@@ -9,6 +9,10 @@ import { stateLayout, stateLayoutDerived } from './stateLayout';
 import { stateApp } from './stateApp';
 
 import { stateGame, stateGameDerived } from './stateGame.svelte';
+// Side-effect import: assigns this game's bet modes and rules over the state-shared defaults.
+// context.ts is the one module every entry path loads — SvelteKit routes, every story, and the
+// production build — which is what makes the metadata universally present.
+import './meta';
 import { i18nDerived } from '../i18n/i18nDerived';
 
 export const setContext = () => {
