@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { MainContainer, OnPressFullScreen } from 'components-layout';
 	import { OnHotkey } from 'components-shared';
-	import { stateUrlDerived } from 'state-shared';
 	import { Sprite } from 'pixi-svelte';
 
 	import { getContext } from '../game/context';
@@ -16,7 +15,7 @@
 
 <MainContainer alignVertical="bottom">
 	<Sprite
-		key="pressToContinueText_{stateUrlDerived.lang()}.png"
+		key="pressToContinueText_en.png"
 		width={800}
 		height={134}
 		anchor={{ x: 0.5, y: 1 }}

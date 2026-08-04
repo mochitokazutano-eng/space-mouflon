@@ -1,0 +1,35 @@
+{
+ "frames": {
+  "pressToContinueText_en.png": {
+   "frame": {
+    "x": 1,
+    "y": 1,
+    "w": 543,
+    "h": 53
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 478,
+    "y": 99,
+    "w": 543,
+    "h": 53
+   },
+   "sourceSize": {
+    "w": 1500,
+    "h": 250
+   }
+  }
+ },
+ "meta": {
+  "app": "mochi-labs procedural",
+  "version": "1.0",
+  "image": "pressAnywhere.webp",
+  "format": "RGBA8888",
+  "size": {
+   "w": 545,
+   "h": 55
+  },
+  "scale": "1"
+ }
+}

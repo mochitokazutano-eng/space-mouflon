@@ -14,7 +14,7 @@ export default {
 	},
 	pressToContinueText: {
 		type: 'sprites',
-		src: new URL('../../assets/sprites/pressToContinueText/MM_pressanywhere.json', import.meta.url).href,
+		src: new URL('../../assets/sprites/pressToContinueText/pressAnywhere.json', import.meta.url).href,
 		preload: true,
 	},
 	bgBase: {
