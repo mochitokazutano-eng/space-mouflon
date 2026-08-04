@@ -119,8 +119,13 @@ const PAY_SYMBOLS: PaySymbol[] = [
 
 const PAY_SYMBOL_COLUMNS = 3;
 
+// U+2007 FIGURE SPACE is digit-width, so padding the tier label with it keeps the two
+// columns aligned in a proportional font. Tabs did not: '10-11' is wider than '12+', so its
+// tab collapsed to nothing and the rows came out ragged.
+const FIGURE_SPACE = '\u2007';
+const payRow = (tier: string, value: string) => `${tier.padEnd(7, FIGURE_SPACE)}${value}x`;
 const payRows = (symbol: PaySymbol) =>
-	`12+\t|\t${symbol.high}x\n10-11\t|\t${symbol.mid}x\n8-9\t|\t${symbol.low}x`;
+	[payRow('12+', symbol.high), payRow('10-11', symbol.mid), payRow('8-9', symbol.low)].join('\n');
 
 const gameRuleMeta: GameRuleMeta = {
 	payTable: [
@@ -144,7 +149,7 @@ const gameRuleMeta: GameRuleMeta = {
 			containers: [
 				{
 					title: 'WORMHOLE PORTAL',
-					text: 'The Wormhole Portal is the Scatter symbol. It pays anywhere on the grid on its own, on top of triggering FREE SPINS.\n\n6+\t|\t100x\n5\t|\t10x\n4\t|\t4x',
+					text: `The Wormhole Portal is the Scatter symbol. It pays anywhere on the grid on its own, on top of triggering FREE SPINS.\n\n${payRow('6+', '100')}\n${payRow('5', '10')}\n${payRow('4', '4')}`,
 					image: symbolImage('S'),
 					imagePosition: 'left' as const,
 					row: 0,
