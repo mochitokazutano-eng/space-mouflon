@@ -7,7 +7,9 @@ export const SYMBOL_SIZE = 100;
 export const REEL_PADDING = 0.53;
 
 // meteor's gold badge is ~37% of SYMBOL_SIZE across; sized to fit the widest value ("100×")
-export const METEOR_VALUE_FONT_SIZE = 16;
+export const METEOR_VALUE_FONT_SIZE = 20;
+// stamp nudge in px: +x right, +y down — tune live while Storybook runs
+export const METEOR_VALUE_OFFSET = { x: -2.0, y: -3.7 };
 
 // Every `fontFamily: 'gold'` BitmapText is tinted with this so the sample's mm_gold font
 // harmonises with our horn gold. Letterforms are unchanged — this is colour only.

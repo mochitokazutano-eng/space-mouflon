@@ -108,7 +108,6 @@
 {#snippet multiplierSnippet(alpha: number, scale: number)}
 	<Container {alpha} {scale}>
 		<BitmapText
-			tint={GOLD_TEXT_TINT}
 			anchor={0.5}
 			text={`${totalMultiplier} X`}
 			style={{

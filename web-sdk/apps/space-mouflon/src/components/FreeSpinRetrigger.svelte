@@ -60,7 +60,6 @@
 			/>
 			<BitmapText
 				anchor={0.5}
-				tint={GOLD_TEXT_TINT}
 				text={`+${amount} FREE SPINS`}
 				style={{
 					fontFamily: 'gold',

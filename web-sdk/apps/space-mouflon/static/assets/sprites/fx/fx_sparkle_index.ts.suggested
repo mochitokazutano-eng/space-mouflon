@@ -1,0 +1,4 @@
+import { createAsset } from 'pixi-svelte';
+import img from './fx_sparkle.png';
+import atlas from './fx_sparkle.json';
+export default createAsset({ img, atlas, preload: false });

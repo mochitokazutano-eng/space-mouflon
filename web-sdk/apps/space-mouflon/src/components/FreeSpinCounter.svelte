@@ -69,7 +69,6 @@
 			})}
 		>
 			<BitmapText
-				tint={GOLD_TEXT_TINT}
 				text={'FREE SPIN'}
 				style={{
 					fontFamily: 'gold',
@@ -79,7 +78,6 @@
 				onresize={(sizes) => (titleSizes = sizes)}
 			/>
 			<BitmapText
-				tint={GOLD_TEXT_TINT}
 				text={`${current} OF ${total}`}
 				{...counterPosition}
 				anchor={{ x: 0.5, y: 0 }}

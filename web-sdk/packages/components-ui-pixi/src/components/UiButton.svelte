@@ -15,11 +15,11 @@
 		turbo: { key: 'ui_icon_turbo', scale: 0.85 },
 		autoSpin: { key: 'ui_icon_autospin', scale: 0.8 },
 		info: { key: 'ui_icon_info', scale: 0.75 },
-		// payTable has no icon of its own; it keeps its text label rather than showing a
-		// second copy of the info glyph next to it in the menu.
-		settings: { key: 'ui_icon_sound', scale: 0.9 },
-		soundOn: { key: 'ui_icon_sound', scale: 0.9 },
-		soundOff: { key: 'ui_icon_sound', scale: 0.9 },
+		payTable: { key: 'ui_icon_paytable', scale: 0.8 },
+		menuExit: { key: 'ui_icon_close', scale: 0.8 },
+		settings: { key: 'ui_icon_settings', scale: 0.9 },
+		soundOn: { key: 'ui_icon_sound_on', scale: 0.9 },
+		soundOff: { key: 'ui_icon_sound_off', scale: 0.9 },
 	};
 
 	const ACTIVE_TINT = 0x241a4d; // dark, for content sitting on the gold "on" pill
@@ -56,7 +56,6 @@
 	const art = $derived(ICON_ART_MAP[icon]);
 	const iconTint = $derived.by(() => {
 		if (buttonProps.disabled) return DISABLED_TINT;
-		if (active) return ACTIVE_TINT;
 		return undefined;
 	});
 </script>
@@ -76,13 +75,13 @@
 			<!-- Kept mounted and faded instead of {#if}-ed: a pixi child added later lands on
 			     top of the icon, which would hide it the moment the button went active. -->
 			<UiSprite
-				key="ui_pill_on"
+				key={art.key}
 				{...center}
 				anchor={0.5}
-				width={buttonProps.sizes.width}
-				height={buttonProps.sizes.height}
-				alpha={active ? 1 : 0}
-				{...buttonProps.disabled ? { tint: DISABLED_TINT } : {}}
+				width={buttonProps.sizes.width * art.scale * 1.18}
+				height={buttonProps.sizes.height * art.scale * 1.18}
+				blendMode="add"
+				alpha={active && !buttonProps.disabled ? 0.8 : 0}
 			/>
 
 			<UiSprite

@@ -67,6 +67,54 @@ export const sharedAssetsPixi = {
 	// plate_name.png ships in the art dir too, but it is the branded "SPACE MOUFLON" lockup
 	// rather than a blank plate, so no button slot uses it — register it when the game-name
 	// slot wants it.
+	// paytable / settings / sound states / close — each icon gets its own art now
+	ui_icon_paytable: {
+		type: 'sprite',
+		src: `${UI_ART_DIR}/icon_paytable.png`,
+	},
+	ui_icon_settings: {
+		type: 'sprite',
+		src: `${UI_ART_DIR}/icon_settings.png`,
+	},
+	ui_icon_sound_on: {
+		type: 'sprite',
+		src: `${UI_ART_DIR}/icon_sound_on.png`,
+	},
+	ui_icon_sound_off: {
+		type: 'sprite',
+		src: `${UI_ART_DIR}/icon_sound_off.png`,
+	},
+	ui_icon_close: {
+		type: 'sprite',
+		src: `${UI_ART_DIR}/icon_close.png`,
+	},
+	// Double Chance toggle (main-screen ante control)
+	ui_toggle_ante_on: {
+		type: 'sprite',
+		src: `${UI_ART_DIR}/toggle_ante_on.png`,
+	},
+	ui_toggle_ante_off: {
+		type: 'sprite',
+		src: `${UI_ART_DIR}/toggle_ante_off.png`,
+	},
+	// Bonus Buy button art — idle / armed
+	ui_btn_bonus: {
+		type: 'sprite',
+		src: `${UI_ART_DIR}/btn_bonus.png`,
+	},
+	ui_btn_bonus_active: {
+		type: 'sprite',
+		src: `${UI_ART_DIR}/btn_bonus_active.png`,
+	},
+	// bet-bar backdrop + branded name lockup
+	ui_plate_wide: {
+		type: 'sprite',
+		src: `${UI_ART_DIR}/plate_wide.png`,
+	},
+	ui_plate_name: {
+		type: 'sprite',
+		src: `${UI_ART_DIR}/plate_name.png`,
+	},
 } as const;
 
 export type SharedAssetPixiKey = keyof typeof sharedAssetsPixi;

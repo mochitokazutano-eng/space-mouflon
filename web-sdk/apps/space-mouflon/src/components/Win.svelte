@@ -66,7 +66,6 @@
 						{#if winLevelData?.animation}
 							<WinAnimation animationMap={winLevelData.animation}>
 								<ResponsiveBitmapText
-									tint={GOLD_TEXT_TINT}
 									anchor={0.5}
 									maxWidth={2130}
 									text={bookEventAmountToCurrencyString(countUpAmount)}
@@ -81,7 +80,6 @@
 							</WinAnimation>
 						{:else}
 							<ResponsiveBitmapText
-								tint={GOLD_TEXT_TINT}
 								anchor={0.5}
 								maxWidth={context.stateLayoutDerived.canvasSizes().width /
 									context.stateLayoutDerived.mainLayout().scale}

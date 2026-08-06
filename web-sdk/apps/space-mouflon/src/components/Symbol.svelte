@@ -2,9 +2,9 @@
 	import { BitmapText } from 'pixi-svelte';
 
 	import SymbolSpine from './SymbolSpine.svelte';
-	import SymbolSprite from './SymbolSprite.svelte';
+	import SymbolSpriteAnimated from './anim/SymbolSpriteAnimated.svelte';
 	import { getSymbolBackgroundInfo, getSymbolInfo } from '../game/utils';
-	import { METEOR_VALUE_FONT_SIZE, GOLD_TEXT_TINT } from '../game/constants';
+	import { METEOR_VALUE_FONT_SIZE, METEOR_VALUE_OFFSET, GOLD_TEXT_TINT } from '../game/constants';
 	import type { SymbolState, RawSymbol } from '../game/types';
 	import { getContext } from '../game/context';
 
@@ -25,7 +25,14 @@
 </script>
 
 {#if isSprite}
-	<SymbolSprite {symbolInfo} x={props.x} y={props.y} oncomplete={props.oncomplete} />
+	<SymbolSpriteAnimated
+		{symbolInfo}
+		x={props.x}
+		y={props.y}
+		state={props.state}
+		name={props.rawSymbol.name}
+		oncomplete={props.oncomplete}
+	/>
 {:else}
 	{@const symbolBackgroundInfo = getSymbolBackgroundInfo({
 		rawSymbol: props.rawSymbol,
@@ -46,9 +53,8 @@
 
 {#if isMeteor && props.rawSymbol.multiplier !== undefined && props.state !== 'explosion'}
 	<BitmapText
-		tint={GOLD_TEXT_TINT}
-		x={props.x}
-		y={props.y}
+		x={(props.x ?? 0) + METEOR_VALUE_OFFSET.x}
+		y={(props.y ?? 0) + METEOR_VALUE_OFFSET.y}
 		anchor={0.5}
 		text={`${props.rawSymbol.multiplier}×`}
 		style={{ fontFamily: 'gold', fontSize: METEOR_VALUE_FONT_SIZE }}

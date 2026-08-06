@@ -119,4 +119,16 @@ export default {
 		type: 'spriteSheet',
 		src: new URL('../../assets/sprites/coin/coin.json', import.meta.url).href,
 	},
+	fxLand: {
+		type: 'spriteSheet',
+		src: new URL('../../assets/sprites/fx/fx_land.json', import.meta.url).href,
+	},
+	fxSparkle: {
+		type: 'spriteSheet',
+		src: new URL('../../assets/sprites/fx/fx_sparkle.json', import.meta.url).href,
+	},
+	fxTrail: {
+		type: 'spriteSheet',
+		src: new URL('../../assets/sprites/fx/fx_trail.json', import.meta.url).href,
+	},
 } as const;

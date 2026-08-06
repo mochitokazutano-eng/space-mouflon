@@ -41,5 +41,15 @@
 			justify-content: center;
 			max-width: 100%;
 		}
+		&.scrollY {
+			max-height: 100dvh;
+			overflow-y: auto;
+			overscroll-behavior: contain;
+			-webkit-overflow-scrolling: touch;
+		}
+		&.scrollX {
+			overflow-x: auto;
+			overscroll-behavior: contain;
+		}
 	}
 </style>

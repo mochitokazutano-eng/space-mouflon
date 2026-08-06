@@ -75,13 +75,13 @@
 
 <Container alpha={textAlpha} scale={textScale}>
 	<ResponsiveBitmapText
-		tint={GOLD_TEXT_TINT}
 		anchor={0.5}
+		y={-0.06 * SYMBOL_SIZE}
 		style={{
 			fontFamily: 'gold',
-			fontSize: 0.65 * SYMBOL_SIZE,
+			fontSize: 0.5 * SYMBOL_SIZE,
 		}}
 		text={bookEventAmountToCurrencyString(amount.current)}
-		maxWidth={props.width}
+		maxWidth={props.width * 0.62}
 	/>
 </Container>

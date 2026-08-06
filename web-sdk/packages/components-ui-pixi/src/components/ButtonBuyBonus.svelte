@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Text } from 'pixi-svelte';
+	import { Text, BitmapText } from 'pixi-svelte';
 	import { Button, type ButtonProps } from 'components-pixi';
 	import { stateModal, stateBet, stateBetDerived, DEFAULT_BET_MODE_KEY } from 'state-shared';
 
@@ -10,7 +10,7 @@
 
 	const props: Partial<Omit<ButtonProps, 'children'>> = $props();
 	const { stateXstateDerived, eventEmitter } = getContext();
-	const sizes = { width: UI_BASE_SIZE, height: UI_BASE_SIZE };
+	const sizes = { width: UI_BASE_SIZE * 1.5, height: UI_BASE_SIZE };
 	const disabled = $derived(!stateXstateDerived.isIdle());
 	const active = $derived(stateBetDerived.activeBetMode()?.type === 'activate');
 
@@ -52,11 +52,11 @@
 		<!-- Gold when idle, so the buy-bonus call to action carries the same gold as the spin
 		     button and the steppers; the dark pill marks the armed "DISABLE" state. -->
 		<UiSprite
-			key={active ? 'ui_pill_off' : 'ui_pill_on'}
+			key={active ? 'ui_plate_wide' : 'ui_btn_bonus'}
 			{...center}
 			anchor={0.5}
 			width={sizes.width}
-			height={sizes.height}
+			height={sizes.width * (active ? 144 / 800 : 200 / 480)}
 			{...disabled
 				? {
 						backgroundColor: 0xaaaaaa,
@@ -64,20 +64,13 @@
 				: {}}
 		/>
 
-		<Text
-			{...center}
-			anchor={0.5}
-			text={state === 'active' ? i18nDerived.disable() : i18nDerived.buyBonus()}
-			style={{
-				align: 'center',
-				wordWrap: true,
-				wordWrapWidth: 200,
-				fontFamily: 'Figtree',
-				fontWeight: '600',
-				fontSize: UI_BASE_FONT_SIZE * 0.9,
-				// white on the dark armed pill, dark on the gold idle pill
-				fill: state === 'active' ? 0xffffff : 0x241a4d,
-			}}
-		/>
+		{#if state === 'active'}
+			<BitmapText
+				{...center}
+				anchor={0.5}
+				text={i18nDerived.disable()}
+				style={{ fontFamily: 'gold', fontSize: UI_BASE_FONT_SIZE * 0.95 }}
+			/>
+		{/if}
 	{/snippet}
 </Button>

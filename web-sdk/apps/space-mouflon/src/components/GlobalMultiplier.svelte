@@ -73,7 +73,6 @@
 			<BitmapText
 				anchor={0.5}
 				scale={pop.current}
-				tint={GOLD_TEXT_TINT}
 				text={`${multiplier}×`}
 				style={{
 					fontFamily: 'gold',

@@ -41,7 +41,6 @@
 
 {#if props.multiplierSymbol.rawSymbol.multiplier !== undefined}
 	<BitmapText
-		tint={GOLD_TEXT_TINT}
 		x={props.multiplierSymbol.symbolX.current}
 		y={props.multiplierSymbol.symbolY.current}
 		anchor={0.5}
