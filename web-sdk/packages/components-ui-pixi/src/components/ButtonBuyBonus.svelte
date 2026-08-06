@@ -52,11 +52,12 @@
 		<!-- Gold when idle, so the buy-bonus call to action carries the same gold as the spin
 		     button and the steppers; the dark pill marks the armed "DISABLE" state. -->
 		<UiSprite
-			key={active ? 'ui_plate_wide' : 'ui_btn_bonus'}
+			key="ui_btn_bonus"
 			{...center}
 			anchor={0.5}
 			width={sizes.width}
-			height={sizes.width * (active ? 144 / 800 : 200 / 480)}
+			height={sizes.width * (200 / 480)}
+			alpha={active ? 0 : 1}
 			{...disabled
 				? {
 						backgroundColor: 0xaaaaaa,
@@ -65,11 +66,18 @@
 		/>
 
 		{#if state === 'active'}
+			<UiSprite
+				key="base_ticker"
+				{...center}
+				anchor={0.5}
+				width={sizes.width}
+				height={sizes.width * (120 / 440)}
+			/>
 			<BitmapText
 				{...center}
 				anchor={0.5}
 				text={i18nDerived.disable()}
-				style={{ fontFamily: 'gold', fontSize: UI_BASE_FONT_SIZE * 0.95 }}
+				style={{ fontFamily: 'gold', fontSize: UI_BASE_FONT_SIZE * 0.7 }}
 			/>
 		{/if}
 	{/snippet}

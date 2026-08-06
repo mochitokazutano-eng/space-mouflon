@@ -1,7 +1,7 @@
 <script lang="ts">
 
 	import { getContext } from '../game/context';
-	import Anticipation from './Anticipation.svelte';
+	import Anticipation from './anim/AnticipationGlow.svelte';
 
 	const context = getContext();
 </script>

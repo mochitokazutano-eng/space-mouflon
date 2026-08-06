@@ -131,4 +131,12 @@ export default {
 		type: 'spriteSheet',
 		src: new URL('../../assets/sprites/fx/fx_trail.json', import.meta.url).href,
 	},
+	fxGlowColumn: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/fx/glow_column.png', import.meta.url).href,
+	},
+	fxGlowFrame: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/fx/glow_frame.png', import.meta.url).href,
+	},
 } as const;

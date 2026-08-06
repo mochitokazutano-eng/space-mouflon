@@ -4,6 +4,7 @@
 	import { SECOND } from 'constants-shared/time';
 
 	import { getContext } from '../game/context';
+	import Starfield from './anim/Starfield.svelte';
 	import { BACKGROUND_RATIO, PORTRAIT_BACKGROUND_RATIO } from '../game/constants';
 
 	const context = getContext();
@@ -30,6 +31,7 @@
 
 <FadeContainer show={showBaseBackground} duration={SECOND} zIndex={-2}>
 	<Sprite key={isPortrait ? 'bgBasePortrait' : 'bgBase'} anchor={0.5} {...backgroundProps} />
+	<Starfield {...context.stateLayoutDerived.canvasSizes()} />
 </FadeContainer>
 
 <FadeContainer show={showFeatureBackground} duration={SECOND} zIndex={-1}>

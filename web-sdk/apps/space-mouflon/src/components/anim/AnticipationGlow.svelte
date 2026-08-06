@@ -8,7 +8,7 @@
 	 * Visual: rising additive glow column over the reel + climbing sparkles.
 	 */
 	import { onDestroy } from 'svelte';
-	import { Container, Rectangle } from 'pixi-svelte';
+	import { Container, Sprite } from 'pixi-svelte';
 	import { stateBetDerived } from 'state-shared';
 
 	import FxOnce from './FxOnce.svelte';
@@ -81,27 +81,28 @@
 
 {#if intensity > 0}
 	<Container x={colX} y={colTop} alpha={intensity}>
-		<!-- layered additive strips = soft glow column, brightest at centre -->
-		{#each [1.0, 0.72, 0.45] as fw, i (i)}
-			<Rectangle
-				x={(-SYMBOL_SIZE * fw) / 2}
-				y={0}
-				width={SYMBOL_SIZE * fw}
-				height={layout.height}
-				backgroundColor={i === 2 ? 0xf6c445 : 0x6a4fc1}
-				alpha={(0.10 + 0.05 * pulse) * (i + 1) * 0.5}
-				blendMode="add"
-			/>
-		{/each}
-		<!-- hot base line at the bottom of the column -->
-		<Rectangle
-			x={-SYMBOL_SIZE * 0.5}
-			y={layout.height - 6}
-			width={SYMBOL_SIZE}
-			height={6}
-			backgroundColor={0xffe9a4}
-			alpha={0.5 + 0.35 * pulse}
+		<!-- soft gradient column texture (tintable): wide violet wash + gold core -->
+		<Sprite
+			key="fxGlowColumn"
+			anchor={0.5}
+			x={0}
+			y={layout.height / 2}
+			width={SYMBOL_SIZE * 1.55}
+			height={layout.height * 1.04}
+			tint={0x6a4fc1}
 			blendMode="add"
+			alpha={0.55 + 0.2 * pulse}
+		/>
+		<Sprite
+			key="fxGlowColumn"
+			anchor={0.5}
+			x={0}
+			y={layout.height / 2}
+			width={SYMBOL_SIZE * 0.75}
+			height={layout.height * 1.02}
+			tint={0xf6c445}
+			blendMode="add"
+			alpha={0.4 + 0.3 * pulse}
 		/>
 		{#each sparks as s (s.id)}
 			<FxOnce

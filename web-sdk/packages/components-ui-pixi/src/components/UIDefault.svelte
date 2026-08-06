@@ -16,6 +16,7 @@
 	import ButtonGameRules from './ButtonGameRules.svelte';
 	import ButtonSettings from './ButtonSettings.svelte';
 	import ButtonBuyBonus from './ButtonBuyBonus.svelte';
+	import ButtonAnteToggle from './ButtonAnteToggle.svelte';
 	import ButtonBet from './ButtonBet.svelte';
 	import ButtonTurbo from './ButtonTurbo.svelte';
 	import ButtonAutoSpin from './ButtonAutoSpin.svelte';
@@ -70,6 +71,7 @@
 
 		{#snippet buttonBuyBonus(buttonProps)}
 			<ButtonBuyBonus {...buttonProps} />
+			<ButtonAnteToggle {...buttonProps} />
 		{/snippet}
 
 		{#snippet buttonBet(buttonProps)}

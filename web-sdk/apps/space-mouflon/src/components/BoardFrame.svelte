@@ -8,6 +8,7 @@
 	import { Sprite } from 'pixi-svelte';
 
 	import { getContext } from '../game/context';
+	import BoardFrameGlow from './anim/BoardFrameGlow.svelte';
 
 	const context = getContext();
 
@@ -30,3 +31,4 @@
 	width={context.stateGameDerived.boardLayout().width * FRAME_SCALE.width}
 	height={context.stateGameDerived.boardLayout().height * FRAME_SCALE.height}
 />
+<BoardFrameGlow />

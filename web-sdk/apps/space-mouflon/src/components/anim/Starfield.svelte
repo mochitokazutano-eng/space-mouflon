@@ -64,7 +64,7 @@
 		<Circle
 			x={drift - 4}
 			y={s.y}
-			radius={SIZES[s.layer]}
+			diameter={SIZES[s.layer] * 2}
 			backgroundColor={s.gold ? 0xffe9a4 : 0xe6ebff}
 			alpha={ALPHAS[s.layer] * twinkle}
 		/>
@@ -74,7 +74,7 @@
 			<Circle
 				x={shoot.x - k * 7}
 				y={shoot.y - k * 3.2}
-				radius={2.2 - k * 0.35}
+				diameter={(2.2 - k * 0.35) * 2}
 				backgroundColor={0xfff6d8}
 				alpha={(1 - shoot.p) * (1 - k * 0.18)}
 			/>
