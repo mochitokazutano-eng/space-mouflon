@@ -10,13 +10,18 @@
 
 	const props: LayoutUiProps = $props();
 	const context = getContext();
+
+	// Minimal single-strip bar (studio standard, see MOCHI_UI_PLAN.md).
+	const STRIP_WIDTH = DESKTOP_BACKGROUND_WIDTH_LIST.reduce((sum, width) => sum + width, 0);
+	const BAR_CENTER_Y = DESKTOP_BASE_SIZE * 0.5;
+	const AMOUNT_Y = BAR_CENTER_Y - 38;
 </script>
 
 <Container x={20}>
 	{@render props.gameName()}
 </Container>
 
-<Container x={context.stateLayoutDerived.canvasSizes().width - 20}>
+<Container x={context.stateLayoutDerived.canvasSizes().width * 0.5}>
 	{@render props.logo()}
 </Container>
 
@@ -26,50 +31,58 @@
 		y={context.stateLayoutDerived.mainLayoutStandard().height - DESKTOP_BASE_SIZE - 10}
 		pivot={anchorToPivot({
 			anchor: { x: 0.5, y: 0 },
-			sizes: {
-				height: DESKTOP_BASE_SIZE,
-				width: DESKTOP_BACKGROUND_WIDTH_LIST.reduce((sum, width) => sum + width, 0),
-			},
+			sizes: { height: DESKTOP_BASE_SIZE, width: STRIP_WIDTH },
 		})}
 	>
-		<Container y={DESKTOP_BASE_SIZE * 0.5 - 160} x={900 - 500} scale={0.8}>
-			{@render props.amountBalance({ stacked: true })}
-		</Container>
+		<!-- full-bleed translucent strip (overshoots so it always reaches both edges) -->
+		<Rectangle
+			anchor={0.5}
+			x={STRIP_WIDTH * 0.5}
+			y={BAR_CENTER_Y}
+			width={STRIP_WIDTH * 3}
+			height={DESKTOP_BASE_SIZE + 24}
+			backgroundColor={BLACK}
+			alpha={0.45}
+		/>
 
-		<Container y={DESKTOP_BASE_SIZE * 0.5 - 160} x={900} scale={0.8}>
-			{@render props.amountWin({ stacked: true })}
-		</Container>
-
-		<Container y={DESKTOP_BASE_SIZE * 0.5 - 160} x={900 + 500} scale={0.8}>
-			{@render props.amountBet({ stacked: true })}
-		</Container>
-
-		<Container y={DESKTOP_BASE_SIZE * 0.5} x={220} scale={0.8}>
-			{@render props.buttonMenu({ anchor: 0.5 })}
-		</Container>
-
-		<Container y={DESKTOP_BASE_SIZE * 0.5} x={220 + 150} scale={0.8}>
+		<Container y={BAR_CENTER_Y} x={95} scale={0.85}>
 			{@render props.buttonBuyBonus({ anchor: 0.5 })}
 		</Container>
 
-		<Container y={DESKTOP_BASE_SIZE * 0.5} x={160 + 150 * 4} scale={0.8}>
-			{@render props.buttonAutoSpin({ anchor: 0.5 })}
+		<Container y={BAR_CENTER_Y} x={230} scale={0.7}>
+			{@render props.buttonMenu({ anchor: 0.5 })}
 		</Container>
 
-		<Container y={DESKTOP_BASE_SIZE * 0.5} x={160 + 150 * 5} scale={0.8}>
-			{@render props.buttonBet({ anchor: 0.5 })}
+		<Container y={AMOUNT_Y} x={440} scale={0.8}>
+			{@render props.amountBalance({ stacked: true })}
 		</Container>
 
-		<Container y={DESKTOP_BASE_SIZE * 0.5} x={160 + 150 * 6} scale={0.8}>
-			{@render props.buttonTurbo({ anchor: 0.5 })}
+		<Container y={AMOUNT_Y} x={STRIP_WIDTH * 0.5} scale={0.8}>
+			{@render props.amountWin({ stacked: true })}
 		</Container>
 
-		<Container y={DESKTOP_BASE_SIZE * 0.5} x={1440} scale={0.8}>
+		<Container y={AMOUNT_Y} x={1280} scale={0.8}>
+			{@render props.amountBet({ stacked: true })}
+		</Container>
+
+		<Container y={BAR_CENTER_Y - 30} x={1425} scale={0.42}>
+			{@render props.buttonIncrease({ anchor: 0.5 })}
+		</Container>
+
+		<Container y={BAR_CENTER_Y + 30} x={1425} scale={0.42}>
 			{@render props.buttonDecrease({ anchor: 0.5 })}
 		</Container>
 
-		<Container y={DESKTOP_BASE_SIZE * 0.5} x={1440 + 150} scale={0.8}>
-			{@render props.buttonIncrease({ anchor: 0.5 })}
+		<Container y={BAR_CENTER_Y} x={1580}>
+			{@render props.buttonBet({ anchor: 0.5 })}
+		</Container>
+
+		<Container y={BAR_CENTER_Y - 34} x={1715} scale={0.65}>
+			{@render props.buttonAutoSpin({ anchor: 0.5 })}
+		</Container>
+
+		<Container y={BAR_CENTER_Y + 34} x={1715} scale={0.65}>
+			{@render props.buttonTurbo({ anchor: 0.5 })}
 		</Container>
 	</Container>
 </MainContainer>

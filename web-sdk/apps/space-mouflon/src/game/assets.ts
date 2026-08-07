@@ -30,6 +30,14 @@ export default {
 		src: new URL('../../assets/sprites/backgrounds/bg_freespins_portrait.png', import.meta.url).href,
 		preload: true,
 	},
+	mouflonIdle: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/character/mouflon_idle.png', import.meta.url).href,
+	},
+	mouflonWin: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/character/mouflon_win.png', import.meta.url).href,
+	},
 	H1: {
 		type: 'sprite',
 		src: new URL('../../assets/sprites/mouflon/H1.png', import.meta.url).href,

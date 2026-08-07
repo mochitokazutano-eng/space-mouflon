@@ -17,7 +17,7 @@ import { stateMeta, type BetModeMeta, type GameRuleMeta } from 'state-shared';
 const MAX_WIN = 20000;
 
 // Symbol art is served from static/, which SvelteKit mounts at the site root.
-const symbolImage = (key: string) => `/assets/sprites/mouflon/${key}.png`;
+const symbolImage = (key: string) => `./assets/sprites/mouflon/${key}.png`;
 
 // ---------------------------------------------------------------------------
 // Bet modes
@@ -251,7 +251,7 @@ const gameRuleMeta: GameRuleMeta = {
 				{
 					title: 'SPIN',
 					text: 'Starts a spin at the current bet. The SPACEBAR also spins.',
-					image: '/assets/ui/mouflon-ui/btn_spin.png',
+					image: './assets/ui/mouflon-ui/btn_spin.png',
 					imagePosition: 'left',
 					row: 0,
 					column: 0,
@@ -259,7 +259,7 @@ const gameRuleMeta: GameRuleMeta = {
 				{
 					title: 'BET PLUS AND MINUS',
 					text: 'Increase or decrease the total bet. Every bet level offered is selectable.',
-					image: '/assets/ui/mouflon-ui/btn_plus.png',
+					image: './assets/ui/mouflon-ui/btn_plus.png',
 					imagePosition: 'left',
 					row: 1,
 					column: 0,
@@ -267,7 +267,7 @@ const gameRuleMeta: GameRuleMeta = {
 				{
 					title: 'DOUBLE CHANCE',
 					text: 'Toggles the DOUBLE CHANCE bet mode at 1.25x the bet. The toggle lights up while active.',
-					image: '/assets/ui/mouflon-ui/toggle_ante_on.png',
+					image: './assets/ui/mouflon-ui/toggle_ante_on.png',
 					imagePosition: 'left',
 					row: 2,
 					column: 0,
@@ -275,7 +275,7 @@ const gameRuleMeta: GameRuleMeta = {
 				{
 					title: 'BONUS BUY',
 					text: 'Opens the BONUS BUY offer at 100x the bet. A confirmation is always shown before purchase.',
-					image: '/assets/ui/mouflon-ui/btn_bonus.png',
+					image: './assets/ui/mouflon-ui/btn_bonus.png',
 					imagePosition: 'left',
 					row: 3,
 					column: 0,
@@ -283,7 +283,7 @@ const gameRuleMeta: GameRuleMeta = {
 				{
 					title: 'AUTOPLAY',
 					text: 'Choose a number of automatic spins. Autoplay always asks for confirmation before starting.',
-					image: '/assets/ui/mouflon-ui/icon_auto.png',
+					image: './assets/ui/mouflon-ui/icon_auto.png',
 					imagePosition: 'left',
 					row: 4,
 					column: 0,
@@ -291,7 +291,7 @@ const gameRuleMeta: GameRuleMeta = {
 				{
 					title: 'TURBO',
 					text: 'Speeds up every spin and animation. All information stays readable in turbo.',
-					image: '/assets/ui/mouflon-ui/icon_bolt.png',
+					image: './assets/ui/mouflon-ui/icon_bolt.png',
 					imagePosition: 'left',
 					row: 5,
 					column: 0,
@@ -299,7 +299,7 @@ const gameRuleMeta: GameRuleMeta = {
 				{
 					title: 'SOUND',
 					text: 'Toggles all game audio. The icon visibly changes while muted.',
-					image: '/assets/ui/mouflon-ui/icon_sound_on.png',
+					image: './assets/ui/mouflon-ui/icon_sound_on.png',
 					imagePosition: 'left',
 					row: 6,
 					column: 0,
@@ -307,7 +307,7 @@ const gameRuleMeta: GameRuleMeta = {
 				{
 					title: 'PAYTABLE',
 					text: 'Opens the paytable with every symbol payout and the special symbol rules.',
-					image: '/assets/ui/mouflon-ui/icon_paytable.png',
+					image: './assets/ui/mouflon-ui/icon_paytable.png',
 					imagePosition: 'left',
 					row: 7,
 					column: 0,
@@ -315,7 +315,7 @@ const gameRuleMeta: GameRuleMeta = {
 				{
 					title: 'GAME RULES',
 					text: 'Opens these rules. Available at any time during play.',
-					image: '/assets/ui/mouflon-ui/icon_info.png',
+					image: './assets/ui/mouflon-ui/icon_info.png',
 					imagePosition: 'left',
 					row: 8,
 					column: 0,
@@ -323,7 +323,7 @@ const gameRuleMeta: GameRuleMeta = {
 				{
 					title: 'MENU AND TICKERS',
 					text: 'The menu holds settings and rules. The bottom bar always shows BALANCE, BET and WIN. Wins count up incrementally as tumbles resolve.',
-					image: '/assets/ui/mouflon-ui/icon_menu.png',
+					image: './assets/ui/mouflon-ui/icon_menu.png',
 					imagePosition: 'left',
 					row: 9,
 					column: 0,

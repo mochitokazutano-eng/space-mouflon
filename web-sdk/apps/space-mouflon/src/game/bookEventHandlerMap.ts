@@ -124,8 +124,8 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 						win: win.meta.winWithoutMult,
 						mult: win.meta.globalMult,
 						result: win.meta.winWithoutMult * win.meta.globalMult,
-						reel: win.meta.overlay.reel,
-						row: win.meta.overlay.row,
+						reel: (win.meta.overlay ?? win.positions[Math.floor(win.positions.length / 2)]).reel,
+						row: (win.meta.overlay ?? win.positions[Math.floor(win.positions.length / 2)]).row,
 					};
 				}),
 			});

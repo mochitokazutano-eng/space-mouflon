@@ -8,44 +8,34 @@
 <script lang="ts">
 	import { MainContainer } from 'components-layout';
 	import { FadeContainer } from 'components-pixi';
+	import { BitmapText } from 'pixi-svelte';
 
+	import TumbleWinAmountFrame from './TumbleWinAmountFrame.svelte';
 	import { getContext } from '../game/context';
-	import { SYMBOL_SIZE, GOLD_TEXT_TINT } from '../game/constants';
-	import { anchorToPivot, BitmapText, Container, type Sizes } from 'pixi-svelte';
-	import Panel from './Panel.svelte';
+	import { SYMBOL_SIZE } from '../game/constants';
 
 	const context = getContext();
-	const PANEL_RATIO_DESKTOP = 824 / 622;
-	const panelWidth = $derived(SYMBOL_SIZE * 2);
-	const panelSizes = $derived({
-		width: panelWidth,
-		height: panelWidth / PANEL_RATIO_DESKTOP,
-	});
+
+	// Same gold plate as the tumble win / multiplier counters (see MOCHI_UI_PLAN.md).
+	// Sits just outside the reel frame's left edge, near the top of the board.
+	const PLATE_HEIGHT = SYMBOL_SIZE * 0.8;
+	const PLATE_WIDTH = PLATE_HEIGHT * (400 / 144);
 	const scale = 1;
 	const position = $derived({
 		x:
 			context.stateGameDerived.boardLayout().x -
 			context.stateGameDerived.boardLayout().width * 0.5 -
-			panelSizes.width -
-			SYMBOL_SIZE * 0.7,
+			PLATE_WIDTH * 0.5 -
+			SYMBOL_SIZE * 0.3,
 		y:
 			context.stateGameDerived.boardLayout().y -
-			context.stateGameDerived.boardLayout().height * 0.5,
+			context.stateGameDerived.boardLayout().height * 0.5 +
+			SYMBOL_SIZE * 0.55,
 	});
-
-	const fontSize = SYMBOL_SIZE * 0.275;
 
 	let show = $state(false);
 	let current = $state(0);
 	let total = $state(0);
-	let titleSizes: Sizes = $state({ width: 0, height: 0 });
-	let counterSizes: Sizes = $state({ width: 0, height: 0 });
-
-	const textContainerSizes = $derived({
-		width: titleSizes.width,
-		height: titleSizes.height + counterSizes.height,
-	});
-	const counterPosition = $derived({ x: titleSizes.width / 2, y: titleSizes.height });
 
 	context.eventEmitter.subscribeOnMount({
 		freeSpinCounterShow: () => (show = true),
@@ -59,34 +49,17 @@
 
 <MainContainer>
 	<FadeContainer {show} {...position} {scale}>
-		<Panel {...panelSizes} borderRadius={18} />
-		<Container
-			x={panelSizes.width * 0.5}
-			y={panelSizes.height * 0.5}
-			pivot={anchorToPivot({
-				sizes: textContainerSizes,
-				anchor: { x: 0.5, y: 0.5 },
-			})}
-		>
-			<BitmapText
-				text={'FREE SPIN'}
-				style={{
-					fontFamily: 'gold',
-					fontSize,
-					wordWrap: false,
-				}}
-				onresize={(sizes) => (titleSizes = sizes)}
-			/>
-			<BitmapText
-				text={`${current} OF ${total}`}
-				{...counterPosition}
-				anchor={{ x: 0.5, y: 0 }}
-				style={{
-					fontFamily: 'gold',
-					fontSize,
-				}}
-				onresize={(sizes) => (counterSizes = sizes)}
-			/>
-		</Container>
+		<TumbleWinAmountFrame title="FREE SPIN">
+			{#snippet children({ frameSizes })}
+				<BitmapText
+					anchor={0.5}
+					text={`${current} OF ${total}`}
+					style={{
+						fontFamily: 'gold',
+						fontSize: frameSizes.height * 0.4,
+					}}
+				/>
+			{/snippet}
+		</TumbleWinAmountFrame>
 	</FadeContainer>
 </MainContainer>

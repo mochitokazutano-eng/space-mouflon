@@ -14,21 +14,23 @@
 	import { waitForTimeout } from 'utils-shared/wait';
 
 	import BoardContainer from './BoardContainer.svelte';
-	import Panel from './Panel.svelte';
+	import TumbleWinAmountFrame from './TumbleWinAmountFrame.svelte';
 	import { getContext } from '../game/context';
-	import { SYMBOL_SIZE, GOLD_TEXT_TINT } from '../game/constants';
+	import { SYMBOL_SIZE } from '../game/constants';
 
-	const PANEL_WIDTH = SYMBOL_SIZE * 0.641;
-	const PANEL_SIZES = { width: PANEL_WIDTH * 1.5, height: PANEL_WIDTH * 1.05 };
+	// Same plate as the tumble win counter; right edge aligned to the reel frame's
+	// right edge, mirroring the tumble win plate on the left (see MOCHI_UI_PLAN.md).
+	const PLATE_HEIGHT = SYMBOL_SIZE * 0.8;
+	const PLATE_WIDTH = PLATE_HEIGHT * (400 / 144);
 	const context = getContext();
 	const scale = $derived(context.stateLayoutDerived.isStacked() ? 1.28 : 1);
 	const desktopPosition = $derived({
-		x: context.stateGameDerived.boardLayout().width - PANEL_WIDTH * 1.3,
-		y: -SYMBOL_SIZE * 0.47,
+		x: context.stateGameDerived.boardLayout().width - PLATE_WIDTH * 0.5,
+		y: -PLATE_HEIGHT * 0.58,
 	});
 	const portraitPosition = $derived({
-		x: context.stateGameDerived.boardLayout().width - PANEL_WIDTH * 1.5,
-		y: -SYMBOL_SIZE * 0.55,
+		x: context.stateGameDerived.boardLayout().width - PLATE_WIDTH * 0.5 * 1.28,
+		y: -PLATE_HEIGHT * 0.68,
 	});
 	const position = $derived(
 		context.stateLayoutDerived.isStacked() ? portraitPosition : desktopPosition,
@@ -63,22 +65,19 @@
 <FadeContainer {show}>
 	<BoardContainer>
 		<Container {...position} {scale}>
-			<Panel
-				anchor={0.5}
-				width={PANEL_SIZES.width}
-				height={PANEL_SIZES.height}
-				borderRadius={12}
-				borderWidth={3}
-			/>
-			<BitmapText
-				anchor={0.5}
-				scale={pop.current}
-				text={`${multiplier}×`}
-				style={{
-					fontFamily: 'gold',
-					fontSize: PANEL_WIDTH * 0.52,
-				}}
-			/>
+			<TumbleWinAmountFrame title="MULTIPLIER">
+				{#snippet children({ frameSizes })}
+					<BitmapText
+						anchor={0.5}
+						scale={pop.current}
+						text={`${multiplier}×`}
+						style={{
+							fontFamily: 'gold',
+							fontSize: frameSizes.height * 0.5,
+						}}
+					/>
+				{/snippet}
+			</TumbleWinAmountFrame>
 		</Container>
 	</BoardContainer>
 </FadeContainer>

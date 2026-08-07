@@ -23,7 +23,7 @@ type BookEventWinInfo = {
 			globalMult: number;
 			clusterMult: number;
 			winWithoutMult: number;
-			overlay: Position;
+			overlay?: Position;
 		};
 	}[];
 };

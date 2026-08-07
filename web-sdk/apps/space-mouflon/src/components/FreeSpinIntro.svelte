@@ -42,9 +42,9 @@
 		{#snippet children({ sizes })}
 			<BitmapText
 				anchor={{ x: 0.5, y: 1 }}
-				y={-sizes.height * 0.24}
+				y={-sizes.height * 0.5 - 10}
 				text="YOU WON"
-				style={{ fontFamily: 'gold', fontSize: sizes.width * 0.1 }}
+				style={{ fontFamily: 'gold', fontSize: sizes.height * 0.3 }}
 			/>
 
 			<!-- The fsIntroNumber spine carried the sample's wooden plaque as well as the number,
@@ -54,16 +54,16 @@
 				text={freeSpinsFromEvent}
 				style={{
 					fontFamily: 'gold',
-					fontSize: sizes.width * 0.26,
+					fontSize: sizes.height * 0.55,
 					fontWeight: 'bold',
 				}}
 			/>
 
 			<BitmapText
 				anchor={{ x: 0.5, y: 0 }}
-				y={sizes.height * 0.24}
+				y={sizes.height * 0.5 + 10}
 				text="FREE SPINS"
-				style={{ fontFamily: 'gold', fontSize: sizes.width * 0.085 }}
+				style={{ fontFamily: 'gold', fontSize: sizes.height * 0.26 }}
 			/>
 		{/snippet}
 	</FreeSpinAnimation>

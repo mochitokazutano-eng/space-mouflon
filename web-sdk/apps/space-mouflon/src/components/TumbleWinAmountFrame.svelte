@@ -3,16 +3,17 @@
 
 	import { BitmapText, Sprite, type Sizes } from 'pixi-svelte';
 
-	import { SYMBOL_SIZE, GOLD_TEXT_TINT } from '../game/constants';
+	import { SYMBOL_SIZE } from '../game/constants';
 
 	type Props = {
+		title?: string;
 		children: Snippet<[{ frameSizes: Sizes }]>;
 	};
 
 	const props: Props = $props();
 
-	// Our navy plate replaces the sample's wooden panel. The footprint is unchanged — the win
-	// amount and the burst spine are both sized off this width.
+	// Shared gold plate for every board-top counter (tumble win, multiplier, free spins):
+	// one visual language across the three plates (see MOCHI_UI_PLAN.md).
 	const PANEL_KEY = 'plateValue';
 	const PANEL_RATIO = 400 / 144;
 	const PANEL_HEIGHT = SYMBOL_SIZE * 0.8;
@@ -21,8 +22,6 @@
 		height: PANEL_HEIGHT,
 	};
 
-	// The sample's wooden title plate is dropped: plate_name.png is the branded "SPACE MOUFLON"
-	// lockup rather than a blank label plate, so the gold label sits straight above the panel.
 	const TITLE_HEIGHT = SYMBOL_SIZE * 0.28;
 </script>
 
@@ -31,7 +30,7 @@
 <BitmapText
 	anchor={{ x: 0.5, y: 1 }}
 	y={-PANEL_SIZES.height * 0.5 - TITLE_HEIGHT * 0.2}
-	text="TUMBLE WIN"
+	text={props.title ?? 'TUMBLE WIN'}
 	style={{ fontFamily: 'gold', fontSize: TITLE_HEIGHT * 0.8 }}
 />
 

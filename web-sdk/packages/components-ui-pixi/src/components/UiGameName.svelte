@@ -19,7 +19,7 @@
 	);
 	const textProps = {
 		style: {
-			fontFamily: 'Figtree',
+			fontFamily: 'Orbitron',
 			fontSize: REM * 1.5,
 			fontWeight: '600',
 			lineHeight: REM * 2,

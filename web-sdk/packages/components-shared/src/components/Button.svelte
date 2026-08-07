@@ -20,7 +20,7 @@
 	.button {
 		width: 100%;
 		position: relative;
-		font-family: 'Figtree', sans-serif;
+		font-family: 'Orbitron', sans-serif;
 		cursor: pointer;
 		display: inline-flex;
 		justify-content: center;

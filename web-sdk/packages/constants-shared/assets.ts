@@ -13,7 +13,7 @@
  * refuses raw files outside the app root (fs.allow), and config-vite inlines every
  * pipeline asset (assetsInlineLimit: Infinity).
  */
-const UI_ART_DIR = '/assets/ui/mouflon-ui';
+const UI_ART_DIR = './assets/ui/mouflon-ui';
 
 export const sharedAssetsPixi = {
 	// spin button

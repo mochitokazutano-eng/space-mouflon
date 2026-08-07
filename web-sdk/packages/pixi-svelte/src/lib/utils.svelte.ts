@@ -64,6 +64,9 @@ export const preloadFont = async (): Promise<void> => {
 				document.fonts.load('400 16px Figtree'),
 				document.fonts.load('600 16px Figtree'),
 				document.fonts.load('700 16px Figtree'),
+				document.fonts.load('400 16px Orbitron'),
+				document.fonts.load('600 16px Orbitron'),
+				document.fonts.load('700 16px Orbitron'),
 			]);
 			await document.fonts.ready;
 		}

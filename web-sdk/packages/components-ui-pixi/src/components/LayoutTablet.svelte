@@ -17,7 +17,7 @@
 	{@render props.gameName()}
 </Container>
 
-<Container x={context.stateLayoutDerived.canvasSizes().width - 20}>
+<Container x={context.stateLayoutDerived.canvasSizes().width * 0.5}>
 	{@render props.logo()}
 </Container>
 

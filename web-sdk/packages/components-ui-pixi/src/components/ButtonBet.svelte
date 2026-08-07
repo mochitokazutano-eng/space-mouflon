@@ -33,14 +33,12 @@
 					/>
 					<Text
 						anchor={0.5}
-						text={['spin_default', 'spin_disabled'].includes(key)
-							? i18nDerived.bet()
-							: i18nDerived.stop()}
+						text={['spin_default', 'spin_disabled'].includes(key) ? '' : i18nDerived.stop()}
 						style={{
 							align: 'center',
 							wordWrap: true,
 							wordWrapWidth: 200,
-							fontFamily: 'Figtree',
+							fontFamily: 'Orbitron',
 							fontWeight: '600',
 							fontSize: UI_BASE_FONT_SIZE * 0.9,
 							fill: 0xffffff,

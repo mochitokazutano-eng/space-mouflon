@@ -111,7 +111,7 @@
 					align: 'center',
 					wordWrap: true,
 					wordWrapWidth: 200,
-					fontFamily: 'Figtree',
+					fontFamily: 'Orbitron',
 					fontWeight: '600',
 					fontSize: UI_BASE_FONT_SIZE * 0.9,
 					fill: active ? ACTIVE_TINT : 0xffffff,

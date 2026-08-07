@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Text, BitmapText } from 'pixi-svelte';
+	import { Text } from 'pixi-svelte';
 	import { Button, type ButtonProps } from 'components-pixi';
 	import { stateModal, stateBet, stateBetDerived, DEFAULT_BET_MODE_KEY } from 'state-shared';
 
@@ -10,7 +10,11 @@
 
 	const props: Partial<Omit<ButtonProps, 'children'>> = $props();
 	const { stateXstateDerived, eventEmitter } = getContext();
-	const sizes = { width: UI_BASE_SIZE * 1.5, height: UI_BASE_SIZE };
+
+	// Minimal round badge (studio standard, see MOCHI_UI_PLAN.md): flat dark circle,
+	// thin ring, two-line label. The ring turns gold while a bet mode is armed.
+	const D = UI_BASE_SIZE * 1.15;
+	const sizes = { width: D + 8, height: D + 8 };
 	const disabled = $derived(!stateXstateDerived.isIdle());
 	const active = $derived(stateBetDerived.activeBetMode()?.type === 'activate');
 
@@ -26,59 +30,47 @@
 		}
 	};
 
-	const getState = (value: {
-		active: boolean;
-		disabled: boolean;
-		hovered: boolean;
-		pressed: boolean;
-	}) => {
-		if (value.disabled) return 'disabled' as const;
-		if (value.pressed) return 'pressed' as const;
-		if (value.hovered) return 'hovered' as const;
-		if (value.active) return 'active' as const;
-		return 'default' as const;
-	};
+	const RING_IDLE = 0x9aa3b5;
+	const RING_ACTIVE = 0xd4af37;
+	const FILL = 0x141927;
 </script>
 
 <Button {...props} {sizes} {disabled} {onpress}>
 	{#snippet children({ center, hovered, pressed })}
-		{@const state = getState({
-			active,
-			disabled,
-			hovered,
-			pressed,
-		})}
-
-		<!-- Gold when idle, so the buy-bonus call to action carries the same gold as the spin
-		     button and the steppers; the dark pill marks the armed "DISABLE" state. -->
+		<!-- ring -->
 		<UiSprite
-			key="ui_btn_bonus"
 			{...center}
 			anchor={0.5}
-			width={sizes.width}
-			height={sizes.width * (200 / 480)}
-			alpha={active ? 0 : 1}
-			{...disabled
-				? {
-						backgroundColor: 0xaaaaaa,
-					}
-				: {}}
+			width={D + 8}
+			height={D + 8}
+			borderRadius={(D + 8) * 0.5}
+			backgroundColor={active ? RING_ACTIVE : RING_IDLE}
+			alpha={disabled ? 0.25 : active ? 0.9 : hovered ? 0.7 : 0.45}
 		/>
-
-		{#if state === 'active'}
-			<UiSprite
-				key="base_ticker"
-				{...center}
-				anchor={0.5}
-				width={sizes.width}
-				height={sizes.width * (120 / 440)}
-			/>
-			<BitmapText
-				{...center}
-				anchor={0.5}
-				text={i18nDerived.disable()}
-				style={{ fontFamily: 'gold', fontSize: UI_BASE_FONT_SIZE * 0.7 }}
-			/>
-		{/if}
+		<!-- face -->
+		<UiSprite
+			{...center}
+			anchor={0.5}
+			width={D}
+			height={D}
+			borderRadius={D * 0.5}
+			backgroundColor={FILL}
+			alpha={pressed ? 0.75 : 0.92}
+		/>
+		<Text
+			{...center}
+			anchor={0.5}
+			text={active ? i18nDerived.disable() : i18nDerived.buyBonus()}
+			style={{
+				align: 'center',
+				wordWrap: true,
+				wordWrapWidth: D * 0.9,
+				fontFamily: 'Orbitron',
+				fontWeight: '600',
+				fontSize: UI_BASE_FONT_SIZE * 0.58,
+				letterSpacing: 1,
+				fill: disabled ? 0x888888 : active ? RING_ACTIVE : 0xffffff,
+			}}
+		/>
 	{/snippet}
 </Button>

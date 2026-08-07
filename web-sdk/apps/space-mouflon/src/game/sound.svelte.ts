@@ -69,7 +69,7 @@ type ManifestSound = {
 	gain: number;
 };
 
-const AUDIO_BASE = '/assets/audio/mouflon';
+const AUDIO_BASE = './assets/audio/mouflon';
 const BUS_GAIN = manifest.busses as Record<Bus, number>;
 const MANIFEST_SOUNDS = manifest.sounds as ManifestSound[];
 

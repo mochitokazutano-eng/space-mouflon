@@ -653,6 +653,9 @@ importers:
         specifier: 6.2.0
         version: 6.2.0(@types/node@26.1.2)(jiti@1.21.7)(sass-embedded@1.89.2)
     devDependencies:
+      '@fontsource/orbitron':
+        specifier: ^5.3.0
+        version: 5.3.0
       '@storybook/addon-svelte-csf':
         specifier: 5.0.5
         version: 5.0.5(@storybook/svelte@9.0.15(storybook@9.0.15(@testing-library/dom@10.4.0)(prettier@3.6.2))(svelte@5.20.5))(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.20.5)(vite@6.2.0(@types/node@26.1.2)(jiti@1.21.7)(sass-embedded@1.89.2)))(babel-plugin-macros@3.1.0)(storybook@9.0.15(@testing-library/dom@10.4.0)(prettier@3.6.2))(svelte@5.20.5)(vite@6.2.0(@types/node@26.1.2)(jiti@1.21.7)(sass-embedded@1.89.2))
@@ -2315,6 +2318,9 @@ packages:
 
   '@fontsource/figtree@5.3.0':
     resolution: {integrity: sha512-/iTcTXL1eRBGhvD7NN9dnKzXzWqDLVZVEUFI9xIxAC1G/hXU8tCyYeXCAuPOuvSYPInFUP7H6KLGgygmDfy1SA==}
+
+  '@fontsource/orbitron@5.3.0':
+    resolution: {integrity: sha512-+BhPsbUAo/AF7sRcf+TEexm+EWWkgTiR9Zwb7AhYIPkc5oplfvw0C45Oc2xlKPhwVEmxG8hHuA6/Ansbl+Bc6w==}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -4984,6 +4990,8 @@ snapshots:
       pixi.js: 8.8.1
 
   '@fontsource/figtree@5.3.0': {}
+
+  '@fontsource/orbitron@5.3.0': {}
 
   '@humanfs/core@0.19.1': {}
 

@@ -71,7 +71,6 @@
 
 		{#snippet buttonBuyBonus(buttonProps)}
 			<ButtonBuyBonus {...buttonProps} />
-			<ButtonAnteToggle {...buttonProps} />
 		{/snippet}
 
 		{#snippet buttonBet(buttonProps)}

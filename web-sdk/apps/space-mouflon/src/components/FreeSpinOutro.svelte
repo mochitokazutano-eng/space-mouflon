@@ -53,9 +53,9 @@
 					{#snippet children({ sizes })}
 						<BitmapText
 							anchor={{ x: 0.5, y: 1 }}
-							y={-sizes.height * 0.24}
+							y={-sizes.height * 0.5 - 10}
 							text="YOU WON"
-							style={{ fontFamily: 'gold', fontSize: sizes.width * 0.1 }}
+							style={{ fontFamily: 'gold', fontSize: sizes.height * 0.3 }}
 						/>
 
 						<!-- The fsOutroNumber spine carried the sample's wooden plaque as well as the
@@ -64,7 +64,7 @@
 							anchor={0.5}
 							style={{
 								fontFamily: 'gold',
-								fontSize: sizes.width * 0.22,
+								fontSize: sizes.height * 0.5,
 							}}
 							text={bookEventAmountToCurrencyString(countUpAmount)}
 							maxWidth={sizes.width * 0.8}
@@ -72,9 +72,9 @@
 
 						<BitmapText
 							anchor={{ x: 0.5, y: 0 }}
-							y={sizes.height * 0.24}
+							y={sizes.height * 0.5 + 10}
 							text="TOTAL WIN"
-							style={{ fontFamily: 'gold', fontSize: sizes.width * 0.085 }}
+							style={{ fontFamily: 'gold', fontSize: sizes.height * 0.26 }}
 						/>
 					{/snippet}
 				</FreeSpinAnimation>

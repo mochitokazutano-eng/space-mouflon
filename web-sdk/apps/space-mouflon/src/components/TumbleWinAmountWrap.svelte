@@ -16,8 +16,11 @@
 	const props: Props = $props();
 	const context = getContext();
 
+	// Docked left-of-centre: the top-centre slot now belongs to the game logo
+	// (studio-standard layout, see MOCHI_UI_PLAN.md); mirrors the FS multiplier
+	// tracker which lives top-right.
 	const desktopPosition = $derived({
-		x: context.stateGameDerived.boardLayout().width * 0.5,
+		x: SYMBOL_SIZE * 0.8 * (400 / 144) * 0.5,
 		y: -SYMBOL_SIZE * 0.8 * 0.58,
 	});
 

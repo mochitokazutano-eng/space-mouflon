@@ -17,11 +17,19 @@
 			? context.stateLayoutDerived.portraitBackgroundLayout({ scale: 1 })
 			: context.stateLayoutDerived.normalBackgroundLayout({ scale: 1 }),
 	);
-	const backgroundProps = $derived(
-		'height' in layout
-			? { x: layout.x, y: layout.y, height: layout.height, width: layout.height * ratio }
-			: { x: layout.x, y: layout.y, width: layout.width, height: layout.width / ratio },
-	);
+	const backgroundProps = $derived.by(() => {
+		const base =
+			'height' in layout
+				? { width: layout.height * ratio, height: layout.height }
+				: { width: layout.width, height: layout.width / ratio };
+		// Portrait only: tall phone canvases left black voids above and below the board,
+		// so the art is scaled up to cover. Landscape/desktop keep the original fit.
+		const canvas = context.stateLayoutDerived.canvasSizes();
+		const scale = isPortrait
+			? Math.max(1, canvas.width / base.width, canvas.height / base.height)
+			: 1;
+		return { x: layout.x, y: layout.y, width: base.width * scale, height: base.height * scale };
+	});
 
 	const showBaseBackground = $derived(context.stateGame.gameType === 'basegame');
 	const showFeatureBackground = $derived(context.stateGame.gameType === 'freeSpins');

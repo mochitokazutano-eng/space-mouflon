@@ -32,17 +32,17 @@
 	import FreeSpinRetrigger from './FreeSpinRetrigger.svelte';
 	import FreeSpinOutro from './FreeSpinOutro.svelte';
 	import Transition from './Transition.svelte';
-	import I18nTest from './I18nTest.svelte';
+	import MouflonCharacter from './MouflonCharacter.svelte';
 
 	const context = getContext();
 
-	// Space Mouflon logo lockup is 1488x482 (aspect ~3.09); size to fit the top-right slot.
+	// Space Mouflon logo v2 is a square 482x482 stacked lockup; render as a top-right badge.
 	// The slot lives in raw canvas space, so on narrow portrait screens the fixed width would
 	// eat almost the whole width — cap it at a share of the canvas.
 	const LOGO_WIDTH = $derived(
-		Math.min(320, context.stateLayoutDerived.canvasSizes().width * 0.55),
+		Math.min(150, context.stateLayoutDerived.canvasSizes().width * 0.3),
 	);
-	const LOGO_HEIGHT = $derived((LOGO_WIDTH * 482) / 1488);
+	const LOGO_HEIGHT = $derived(LOGO_WIDTH);
 
 	onMount(() => (context.stateLayout.showLoadingScreen = true));
 
@@ -105,12 +105,13 @@
 			{#snippet logo()}
 				<Sprite
 					key="gameLogo"
-					anchor={{ x: 1, y: 0 }}
+					anchor={{ x: 0.5, y: 0 }}
 					width={LOGO_WIDTH}
 					height={LOGO_HEIGHT}
 				/>
 			{/snippet}
 		</UI>
+		<MouflonCharacter />
 		<Win />
 		<FreeSpinIntro />
 		{#if ['desktop', 'landscape'].includes(context.stateLayoutDerived.layoutType())}
@@ -119,7 +120,6 @@
 		<FreeSpinOutro />
 		<Transition />
 
-		<I18nTest />
 	{/if}
 </App>
 
