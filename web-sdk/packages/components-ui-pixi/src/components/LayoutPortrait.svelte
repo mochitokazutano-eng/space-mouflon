@@ -133,9 +133,11 @@
 		{@render props.buttonBuyBonus({ anchor: 0.5 })}
 	</Container>
 
+	{#if !stateUi.menuOpen}
 	<Container x={MENU_X} y={STRIP_CENTER_Y} scale={0.55}>
 		{@render props.buttonMenu({ anchor: 0.5 })}
 	</Container>
+	{/if}
 
 	<Container x={BALANCE_X} y={STRIP_CENTER_Y - 40} scale={0.72}>
 		{@render props.amountBalance({ stacked: true })}
@@ -201,7 +203,7 @@
 			</Container>
 
 			<Container scale={0.55} y={-140 * 2}>
-				{@render props.buttonSettings({ anchor: 0.5 })}
+				{@render props.buttonTurbo({ anchor: 0.5 })}
 			</Container>
 
 			<Container scale={0.55} y={-140}>

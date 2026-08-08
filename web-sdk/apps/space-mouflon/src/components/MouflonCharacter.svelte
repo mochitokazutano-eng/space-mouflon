@@ -23,7 +23,7 @@
 	// Feet planted just outside the frame's bottom-left corner.
 	const feet = $derived({
 		x: -SYMBOL_SIZE * 0.4 - Math.max(IDLE_WIDTH, WIN_WIDTH) * 0.5,
-		y: context.stateGameDerived.boardLayout().height - SYMBOL_SIZE * 0.35,
+		y: context.stateGameDerived.boardLayout().height - SYMBOL_SIZE * 0.95,
 	});
 
 	// Breathing: slow sine loop, scaling from the feet so he rises and settles.

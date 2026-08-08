@@ -49,9 +49,11 @@
 			{@render props.buttonBuyBonus({ anchor: 0.5 })}
 		</Container>
 
+		{#if !stateUi.menuOpen}
 		<Container y={BAR_CENTER_Y} x={230} scale={0.7}>
 			{@render props.buttonMenu({ anchor: 0.5 })}
 		</Container>
+		{/if}
 
 		<Container y={AMOUNT_Y} x={440} scale={0.8}>
 			{@render props.amountBalance({ stacked: true })}
@@ -103,26 +105,26 @@
 
 	<MainContainer standard alignVertical="bottom">
 		<Container
-			x={298}
+			x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5 - STRIP_WIDTH * 0.5 + 230}
 			y={context.stateLayoutDerived.mainLayoutStandard().height - DESKTOP_BASE_SIZE - 10}
 		>
-			<Container scale={0.8} y={DESKTOP_BASE_SIZE * 0.5 - 150 - 170 * 3}>
+			<Container scale={0.7} y={DESKTOP_BASE_SIZE * 0.5 - 150 - 170 * 3}>
 				{@render props.buttonPayTable({ anchor: 0.5 })}
 			</Container>
 
-			<Container scale={0.8} y={DESKTOP_BASE_SIZE * 0.5 - 150 - 170 * 2}>
+			<Container scale={0.7} y={DESKTOP_BASE_SIZE * 0.5 - 150 - 170 * 2}>
 				{@render props.buttonGameRules({ anchor: 0.5 })}
 			</Container>
 
-			<Container scale={0.8} y={DESKTOP_BASE_SIZE * 0.5 - 150 - 170 * 1}>
-				{@render props.buttonSettings({ anchor: 0.5 })}
+			<Container scale={0.7} y={DESKTOP_BASE_SIZE * 0.5 - 150 - 170 * 1}>
+				{@render props.buttonTurbo({ anchor: 0.5 })}
 			</Container>
 
-			<Container scale={0.8} y={DESKTOP_BASE_SIZE * 0.5 - 150}>
+			<Container scale={0.7} y={DESKTOP_BASE_SIZE * 0.5 - 150}>
 				{@render props.buttonSoundSwitch({ anchor: 0.5 })}
 			</Container>
 
-			<Container scale={0.8} y={DESKTOP_BASE_SIZE * 0.5}>
+			<Container scale={0.7} y={DESKTOP_BASE_SIZE * 0.5}>
 				{@render props.buttonMenuClose({ anchor: 0.5 })}
 			</Container>
 		</Container>

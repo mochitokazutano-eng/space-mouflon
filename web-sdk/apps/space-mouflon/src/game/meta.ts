@@ -64,7 +64,7 @@ const betModeMeta: BetModeMeta = {
 			title: 'DOUBLE CHANCE',
 			dialog:
 				'Roughly doubles the chance of triggering FREE SPINS when activated, for 1.25x the player bet amount. DOUBLE CHANCE remains active until disabled by the player.',
-			description: 'Roughly double your chance of triggering FREE SPINS.',
+			description: 'About double the chance to trigger FREE SPINS.',
 			button: 'ACTIVATE',
 			betAmountLabel: 'DOUBLE CHANCE',
 			tickerIdle: 'DOUBLE CHANCE IS ACTIVE',
@@ -148,8 +148,8 @@ const gameRuleMeta: GameRuleMeta = {
 			columns: 1,
 			containers: [
 				{
-					title: 'WORMHOLE PORTAL',
-					text: `The Wormhole Portal is the Scatter symbol. It pays anywhere on the grid on its own, on top of triggering FREE SPINS.\n\n${payRow('6+', '100')}\n${payRow('5', '10')}\n${payRow('4', '4')}`,
+					title: 'GALACTIC STAR',
+					text: `The Galactic Star is the Scatter symbol. It pays anywhere on the grid on its own, on top of triggering FREE SPINS.\n\n${payRow('6+', '100')}\n${payRow('5', '10')}\n${payRow('4', '4')}`,
 					image: symbolImage('S'),
 					imagePosition: 'left' as const,
 					row: 0,
@@ -157,7 +157,7 @@ const gameRuleMeta: GameRuleMeta = {
 				},
 				{
 					title: 'COSMIC METEOR',
-					text: 'The Cosmic Meteor appears during FREE SPINS only and carries a multiplier value of 2x, 3x, 4x, 5x, 6x, 8x, 10x, 12x, 15x, 20x, 25x, 50x or 100x.\n\nAll Cosmic Meteor values on the board are added together, and the total multiplies the full cascade payout for that spin.',
+					text: 'Cosmic Meteors land during FREE SPINS only. Each one carries a multiplier of 2x, 3x, 4x, 5x, 6x, 8x, 10x, 12x, 15x, 20x, 25x, 50x or 100x.\n\nAll Meteor values on the board are added together, and the total multiplies the whole cascade payout for that spin.',
 					image: symbolImage('M'),
 					imagePosition: 'left' as const,
 					row: 1,
@@ -172,7 +172,7 @@ const gameRuleMeta: GameRuleMeta = {
 			containers: [
 				{
 					title: '',
-					text: 'The grid is 6 reels by 5 rows and pays anywhere. 8 or more matching symbols anywhere on the grid pay, regardless of their position — the symbols do not need to be adjacent or on a line.\n\nPayouts are grouped into three count tiers: 8-9, 10-11 and 12 or more matching symbols. All values in the paytable are multiples of the total bet.\n\nThere is no Wild symbol in this game.',
+					text: 'The grid is 6 reels by 5 rows and pays anywhere. Land 8 or more matching symbols anywhere on the grid to win. They do not need to be adjacent or sit on a payline.\n\nPayouts come in three tiers: 8 to 9, 10 to 11, and 12 or more matching symbols. Every paytable value is a multiple of the total bet.\n\nThis game has no Wild symbol.',
 					image: '',
 					imagePosition: 'top' as const,
 					row: 0,
@@ -187,7 +187,7 @@ const gameRuleMeta: GameRuleMeta = {
 			containers: [
 				{
 					title: '',
-					text: 'After a win is paid, the winning symbols are removed from the grid. The remaining symbols fall down to fill the gaps and new symbols drop in from above, then the grid is evaluated again.\n\nThis repeats for as long as new wins keep forming, so a single spin can chain multiple cascades.',
+					text: 'Winning symbols are removed once they pay. The symbols above them fall to fill the gaps, new symbols drop in from the top, and the grid pays again.\n\nThis keeps running while new wins keep landing, so one spin can chain a long run of tumbles.',
 					image: '',
 					imagePosition: 'top' as const,
 					row: 0,
@@ -204,7 +204,7 @@ const gameRuleMeta: GameRuleMeta = {
 			containers: [
 				{
 					title: 'TRIGGER',
-					text: 'Landing Wormhole Portal Scatters in a spin sequence triggers FREE SPINS.\n\n4 Scatters award 10 FREE SPINS.\n5 Scatters award 12 FREE SPINS.\n6 or more Scatters award 15 FREE SPINS.\n\nThe Scatters also pay their own value on top of triggering the feature.',
+					text: 'Galactic Star Scatters landing in one spin sequence trigger FREE SPINS.\n\n4 Scatters award 10 FREE SPINS.\n5 Scatters award 12 FREE SPINS.\n6 or more Scatters award 15 FREE SPINS.\n\nScatters pay their own value as well when they trigger the feature.',
 					image: symbolImage('S'),
 					imagePosition: 'left' as const,
 					row: 0,
@@ -212,7 +212,7 @@ const gameRuleMeta: GameRuleMeta = {
 				},
 				{
 					title: 'RETRIGGER',
-					text: 'During FREE SPINS, landing Wormhole Portal Scatters awards additional FREE SPINS.\n\n3 Scatters award 5 additional FREE SPINS.\n4 Scatters award 8 additional FREE SPINS.\n5 or more Scatters award 10 additional FREE SPINS.',
+					text: 'During FREE SPINS, landing Galactic Star Scatters awards additional FREE SPINS.\n\n3 Scatters award 5 additional FREE SPINS.\n4 Scatters award 8 additional FREE SPINS.\n5 or more Scatters award 10 additional FREE SPINS.',
 					image: symbolImage('S'),
 					imagePosition: 'left' as const,
 					row: 1,
@@ -220,7 +220,7 @@ const gameRuleMeta: GameRuleMeta = {
 				},
 				{
 					title: 'COSMIC METEOR',
-					text: 'Cosmic Meteor symbols appear during FREE SPINS only, each carrying a multiplier value of 2x, 3x, 4x, 5x, 6x, 8x, 10x, 12x, 15x, 20x, 25x, 50x or 100x.\n\nEvery Cosmic Meteor value on the board is added together, and the total multiplies the full cascade payout for that spin.',
+					text: 'Cosmic Meteors land during FREE SPINS only. Each one carries a multiplier of 2x, 3x, 4x, 5x, 6x, 8x, 10x, 12x, 15x, 20x, 25x, 50x or 100x.\n\nAll Meteor values on the board are added together, and the total multiplies the whole cascade payout for that spin.',
 					image: symbolImage('M'),
 					imagePosition: 'left' as const,
 					row: 2,
@@ -250,7 +250,7 @@ const gameRuleMeta: GameRuleMeta = {
 			containers: [
 				{
 					title: 'SPIN',
-					text: 'Starts a spin at the current bet. The SPACEBAR also spins.',
+					text: 'Starts a spin at the current bet. SPACEBAR spins as well.',
 					image: './assets/ui/mouflon-ui/btn_spin.png',
 					imagePosition: 'left',
 					row: 0,
@@ -258,7 +258,7 @@ const gameRuleMeta: GameRuleMeta = {
 				},
 				{
 					title: 'BET PLUS AND MINUS',
-					text: 'Increase or decrease the total bet. Every bet level offered is selectable.',
+					text: 'Raises or lowers the total bet. Every bet level is selectable.',
 					image: './assets/ui/mouflon-ui/btn_plus.png',
 					imagePosition: 'left',
 					row: 1,
@@ -266,7 +266,7 @@ const gameRuleMeta: GameRuleMeta = {
 				},
 				{
 					title: 'DOUBLE CHANCE',
-					text: 'Toggles the DOUBLE CHANCE bet mode at 1.25x the bet. The toggle lights up while active.',
+					text: 'Turns on DOUBLE CHANCE at 1.25x the bet. The toggle lights up while it is on.',
 					image: './assets/ui/mouflon-ui/toggle_ante_on.png',
 					imagePosition: 'left',
 					row: 2,
@@ -274,7 +274,7 @@ const gameRuleMeta: GameRuleMeta = {
 				},
 				{
 					title: 'BONUS BUY',
-					text: 'Opens the BONUS BUY offer at 100x the bet. A confirmation is always shown before purchase.',
+					text: 'Opens the BONUS BUY offer at 100x the bet. You confirm before any purchase.',
 					image: './assets/ui/mouflon-ui/btn_bonus.png',
 					imagePosition: 'left',
 					row: 3,
@@ -282,7 +282,7 @@ const gameRuleMeta: GameRuleMeta = {
 				},
 				{
 					title: 'AUTOPLAY',
-					text: 'Choose a number of automatic spins. Autoplay always asks for confirmation before starting.',
+					text: 'Sets a number of automatic spins. Autoplay asks you to confirm before it starts.',
 					image: './assets/ui/mouflon-ui/icon_auto.png',
 					imagePosition: 'left',
 					row: 4,
@@ -290,7 +290,7 @@ const gameRuleMeta: GameRuleMeta = {
 				},
 				{
 					title: 'TURBO',
-					text: 'Speeds up every spin and animation. All information stays readable in turbo.',
+					text: 'Speeds up spins and animations. All values stay readable in turbo.',
 					image: './assets/ui/mouflon-ui/icon_bolt.png',
 					imagePosition: 'left',
 					row: 5,
@@ -298,7 +298,7 @@ const gameRuleMeta: GameRuleMeta = {
 				},
 				{
 					title: 'SOUND',
-					text: 'Toggles all game audio. The icon visibly changes while muted.',
+					text: 'Turns all game audio on and off. The icon changes while muted.',
 					image: './assets/ui/mouflon-ui/icon_sound_on.png',
 					imagePosition: 'left',
 					row: 6,
@@ -314,7 +314,7 @@ const gameRuleMeta: GameRuleMeta = {
 				},
 				{
 					title: 'GAME RULES',
-					text: 'Opens these rules. Available at any time during play.',
+					text: 'Opens these rules at any time during play.',
 					image: './assets/ui/mouflon-ui/icon_info.png',
 					imagePosition: 'left',
 					row: 8,
@@ -322,7 +322,7 @@ const gameRuleMeta: GameRuleMeta = {
 				},
 				{
 					title: 'MENU AND TICKERS',
-					text: 'The menu holds settings and rules. The bottom bar always shows BALANCE, BET and WIN. Wins count up incrementally as tumbles resolve.',
+					text: 'The menu holds settings and rules. The bottom bar always shows BALANCE, BET and WIN. Win values count up as each tumble pays.',
 					image: './assets/ui/mouflon-ui/icon_menu.png',
 					imagePosition: 'left',
 					row: 9,

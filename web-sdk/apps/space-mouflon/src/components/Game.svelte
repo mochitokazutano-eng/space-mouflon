@@ -98,6 +98,8 @@
 			<FreeSpinRetrigger />
 		</MainContainer>
 
+		<MouflonCharacter />
+
 		<UI>
 			{#snippet gameName()}
 				<!-- Space Mouflon logo (below) already contains the game name -->
@@ -111,7 +113,6 @@
 				/>
 			{/snippet}
 		</UI>
-		<MouflonCharacter />
 		<Win />
 		<FreeSpinIntro />
 		{#if ['desktop', 'landscape'].includes(context.stateLayoutDerived.layoutType())}

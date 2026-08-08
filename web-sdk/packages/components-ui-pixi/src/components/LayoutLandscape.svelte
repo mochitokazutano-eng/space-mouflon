@@ -50,9 +50,11 @@
 			{@render props.buttonBuyBonus({ anchor: 0.5 })}
 		</Container>
 
+		{#if !stateUi.menuOpen}
 		<Container y={BAR_CENTER_Y} x={at(0.13)} scale={0.6}>
 			{@render props.buttonMenu({ anchor: 0.5 })}
 		</Container>
+		{/if}
 
 		<Container y={BAR_CENTER_Y - 42} x={at(0.27)} scale={0.72}>
 			{@render props.amountBalance({ stacked: true })}
@@ -104,8 +106,8 @@
 
 	<MainContainer standard alignVertical="bottom">
 		<Container
-			x={165}
-			y={context.stateLayoutDerived.mainLayoutStandard().height - LANDSCAPE_BASE_SIZE - 130}
+			x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5 - STRIP_WIDTH * 0.5 + at(0.13)}
+			y={context.stateLayoutDerived.mainLayoutStandard().height - LANDSCAPE_BASE_SIZE - 40}
 		>
 			<Container scale={0.6} y={LANDSCAPE_BASE_SIZE * 0.5 - 130 * 4}>
 				{@render props.buttonPayTable({ anchor: 0.5 })}
@@ -116,7 +118,7 @@
 			</Container>
 
 			<Container scale={0.6} y={LANDSCAPE_BASE_SIZE * 0.5 - 130 * 2}>
-				{@render props.buttonSettings({ anchor: 0.5 })}
+				{@render props.buttonTurbo({ anchor: 0.5 })}
 			</Container>
 
 			<Container scale={0.6} y={LANDSCAPE_BASE_SIZE * 0.5 - 130}>
